@@ -11,19 +11,19 @@ let WayController = new wayController();
 const enrutadorWay = Router();
 
 //Creamos una ruta que realiza una peticion que listara las consolas
-enrutadorWay.route('/consolas').get(WayController.lista);
+enrutadorWay.route('/consolas').get(WayController.listaConsolas);
 
 //Ruta que permite guardar datos en la base
-enrutadorWay.route('/consolas').post(WayController.guardar);
+enrutadorWay.route('/consolas').post(WayController.guardarConsola);
 
 //Ruta que permite eliminar datos de la base
-enrutadorWay.route('/consolas/:codigo').delete(WayController.eliminar);
+enrutadorWay.route('/consolas/:codigo').delete(WayController.eliminarConsola);
 
 //Ruta que permite actualzar datos de la base
-enrutadorWay.route('/consolas/:codigo').put(WayController.actualizar);
+enrutadorWay.route('/consolas/:codigo').put(WayController.actualizarConsola);
 
 //Ruta que permite obtener una consola en especifico de la base de datos
-enrutadorWay.route('/consolas/:codigo').get(WayController.obtenerUna);
+enrutadorWay.route('/consolas/:codigo').get(WayController.obtenerUnaConsola);
 
 //Exportamos
 export default enrutadorWay;

@@ -5,7 +5,7 @@ import express, { Application } from "express";
 import enrutadorIndex from "./routes/index.route";
 
 //Importamos el enrutadorConsolas dede el archivo "consolas.route"
-import enrutadorConsolas from "./routes/consolas.route";
+import enrutadorConsolas from "./routes/way.route";
 
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 export class Server {
