@@ -5,45 +5,45 @@ import { conexion } from "../routes/database";
 import { Request, Response } from "express";
 
 //Importamos la interfaz "IConsola" desde el archivo "consola"
-import { IConsola } from "../models/consola";
+import { IGasto } from "../models/gasto";
 
 //Clase que nos permitira almacenar metodos
-export class wayController {
+export class gastoController {
     
     //Metodo que nos permite listar consolas
-    public async listaConsolas(req:Request,res:Response){
+    public async listaGastos(req:Request,res:Response){
 
         
         //Guardamos la funcion "conexion" en las constante "db", para lograr la conexion con la base de datos
         const db = await conexion();
 
         //Realizamos la consulta para mostrar los datos de la tabla consolas
-        let consolas = await db.query('select * from consolas');
+        let gastos = await db.query('select * from consolas');
 
         //Retorna una respuesta en formato json de pagos
-        return res.json(consolas);
+        return res.json(gastos);
 
     }
 
     //Metodo que guardara datos en la base
-    public async guardarConsola(req:Request,res:Response){
+    public async guardarGasto(req:Request,res:Response){
 
         //Conexion con la base de datos
         const db = await conexion();
 
         //Guardamos los datos ingresados en el body en una variable
-        let consola:IConsola = req.body;
+        let gasto:IGasto = req.body;
 
         //Inserta los datos en la base de datos
-        await db.query('insert into consolas set ?',[consola]);
+        await db.query('insert into consolas set ?',[gasto]);
 
         //Retorna un mensaje despues de realizarse todo de forma correcta
-        return res.json('La consola fue guardada exitosamente'); 
+        return res.json('El gasto fue guardada exitosamente'); 
 
     }
 
     //Metodo que nos permite eliminar datos
-    public async eliminarConsola(req:Request,res:Response)
+    public async eliminarGasto(req:Request,res:Response)
     {
 
         //Conexion con la base de datos
@@ -56,13 +56,13 @@ export class wayController {
         await db.query("delete from consolas where id_consola = ?",[codigo]);
 
         //Retorna un mensaje despues de realizarse todo de forma correcta
-        return res.json('La consola se elimino exitosamente');
+        return res.json('El gasto se elimino exitosamente');
 
 
     }
 
     //Metodo que nos permite actualizar datos
-    public async actualizarConsola(req:Request,res:Response)
+    public async actualizarGasto(req:Request,res:Response)
     {
 
         //Conexion con la base de datos
@@ -72,10 +72,10 @@ export class wayController {
         let codigo = req.params.codigo;
 
         //Nuevos datos de la consola
-        let consola_actualizada = req.body;
+        let gasto_actualizado = req.body;
 
         //Realiza la actualizacion
-        await db.query("update consolas set ? where id_consola = ?",[consola_actualizada,codigo]);
+        await db.query("update consolas set ? where id_consola = ?",[gasto_actualizado,codigo]);
 
         //Retorna un mensaje despues de realizarse todo correctamente
         return res.json("Se actualizo exitosamente");
@@ -83,7 +83,7 @@ export class wayController {
     }
 
     //Metodo que lista una consola en especifico
-    public async obtenerUnaConsola(req:Request,res:Response)
+    public async obtenerUnGasto(req:Request,res:Response)
     {
 
         //Conexion con la base de datos
@@ -93,10 +93,10 @@ export class wayController {
         let codigo = req.params.codigo;
 
         //Realiza la seleccion de una consola y la guarda en una variable
-        let unaConsola = await db.query("select * from consolas where id_consola = ?",[codigo]);
+        let unGasto = await db.query("select * from consolas where id_consola = ?",[codigo]);
 
         //Retorna la consola seleccionada
-        return res.json(unaConsola[0]);
+        return res.json(unGasto[0]);
 
     }
 

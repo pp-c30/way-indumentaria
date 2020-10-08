@@ -5,7 +5,7 @@ import express, { Application } from "express";
 import enrutadorIndex from "./routes/index.route";
 
 //Importamos el enrutadorConsolas dede el archivo "consolas.route"
-import enrutadorConsolas from "./routes/way.route";
+import enrutadorGasto from "./routes/gasto.route";
 
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 export class Server {
@@ -43,7 +43,7 @@ export class Server {
         //Le damos uso al enrutadorIndex
         this.app.use(enrutadorIndex);
 
-        this.app.use(enrutadorConsolas);
+        this.app.use(enrutadorGasto);
     }
 
     //Metodo donde se realizan las configuraciones extras

@@ -2,28 +2,28 @@
 import { Router } from "express";
 
 //Importamos el metodo "consolassController" desde el archivo "consolas.controllers"
-import { wayController } from "../controllers/way.controllers";
+import { gastoController } from "../controllers/gasto.controllers";
 
 //Instancia que permite tener todas las funciones de la clase "consolasController"
-let WayController = new wayController();
+let GastoController = new gastoController();
 
 //Creamos una variable constante llamada "enrutadorConsolas", en la que se guardara todas las funciones de Router
 const enrutadorWay = Router();
 
 //Creamos una ruta que realiza una peticion que listara las consolas
-enrutadorWay.route('/consolas').get(WayController.listaConsolas);
+enrutadorWay.route('/gastos').get(GastoController.listaGastos);
 
 //Ruta que permite guardar datos en la base
-enrutadorWay.route('/consolas').post(WayController.guardarConsola);
+enrutadorWay.route('/gastos').post(GastoController.guardarGasto);
 
 //Ruta que permite eliminar datos de la base
-enrutadorWay.route('/consolas/:codigo').delete(WayController.eliminarConsola);
+enrutadorWay.route('/gastos/:codigo').delete(GastoController.eliminarGasto);
 
 //Ruta que permite actualzar datos de la base
-enrutadorWay.route('/consolas/:codigo').put(WayController.actualizarConsola);
+enrutadorWay.route('/gastos/:codigo').put(GastoController.actualizarGasto);
 
 //Ruta que permite obtener una consola en especifico de la base de datos
-enrutadorWay.route('/consolas/:codigo').get(WayController.obtenerUnaConsola);
+enrutadorWay.route('/gastos/:codigo').get(GastoController.obtenerUnGasto);
 
 //Exportamos
-export default enrutadorWay;
+export default enrutadorGasto;
