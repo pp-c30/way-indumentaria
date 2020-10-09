@@ -18,7 +18,7 @@ export class gastoController {
         const db = await conexion();
 
         //Realizamos la consulta para mostrar los datos de la tabla consolas
-        let gastos = await db.query('select * from consolas');
+        let gastos = await db.query('select * from gasto');
 
         //Retorna una respuesta en formato json de pagos
         return res.json(gastos);
@@ -35,10 +35,10 @@ export class gastoController {
         let gasto:IGasto = req.body;
 
         //Inserta los datos en la base de datos
-        await db.query('insert into consolas set ?',[gasto]);
+        await db.query('insert into gasto set ?',[gasto]);
 
         //Retorna un mensaje despues de realizarse todo de forma correcta
-        return res.json('El gasto fue guardada exitosamente'); 
+        return res.json('El gasto fue guardado exitosamente'); 
 
     }
 
@@ -53,7 +53,7 @@ export class gastoController {
         let codigo = req.params.codigo;
 
         //Realiza la eliminacion de la consola
-        await db.query("delete from consolas where id_consola = ?",[codigo]);
+        await db.query("delete from gasto where id_gasto = ?",[codigo]);
 
         //Retorna un mensaje despues de realizarse todo de forma correcta
         return res.json('El gasto se elimino exitosamente');
@@ -75,7 +75,7 @@ export class gastoController {
         let gasto_actualizado = req.body;
 
         //Realiza la actualizacion
-        await db.query("update consolas set ? where id_consola = ?",[gasto_actualizado,codigo]);
+        await db.query("update gasto set ? where id_gasto = ?",[gasto_actualizado,codigo]);
 
         //Retorna un mensaje despues de realizarse todo correctamente
         return res.json("Se actualizo exitosamente");
@@ -93,7 +93,7 @@ export class gastoController {
         let codigo = req.params.codigo;
 
         //Realiza la seleccion de una consola y la guarda en una variable
-        let unGasto = await db.query("select * from consolas where id_consola = ?",[codigo]);
+        let unGasto = await db.query("select * from gasto where id_gasto = ?",[codigo]);
 
         //Retorna la consola seleccionada
         return res.json(unGasto[0]);

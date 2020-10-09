@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 //Importamos el enrutadorIndex desde el archivo "index.route"
 const index_route_1 = __importDefault(require("./routes/index.route"));
 //Importamos el enrutadorConsolas dede el archivo "consolas.route"
-const way_route_1 = __importDefault(require("./routes/way.route"));
+const gasto_route_1 = __importDefault(require("./routes/gasto.route"));
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 class Server {
     //Es un metodo que se ejecuta por la instancia del servidor
@@ -31,7 +31,7 @@ class Server {
     routes() {
         //Le damos uso al enrutadorIndex
         this.app.use(index_route_1.default);
-        this.app.use(way_route_1.default);
+        this.app.use(gasto_route_1.default);
     }
     //Metodo donde se realizan las configuraciones extras
     middleware() {
