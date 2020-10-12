@@ -4,8 +4,12 @@ import express, { Application } from "express";
 //Importamos el enrutadorIndex desde el archivo "index.route"
 import enrutadorIndex from "./routes/index.route";
 
-//Importamos el enrutadorConsolas dede el archivo "consolas.route"
+//Importamos el enrutadorConsolas desde el archivo "consolas.route"
 import enrutadorGasto from "./routes/gasto.route";
+import enrutadorCategoria from './routes/categoria.route';
+import enrutadorProducto from "./routes/producto.route";
+import enrutadorVenta_impaga_paga from "./routes/venta_impaga_paga.routes";
+
 
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 export class Server {
@@ -44,6 +48,12 @@ export class Server {
         this.app.use(enrutadorIndex);
 
         this.app.use(enrutadorGasto);
+
+        this.app.use(enrutadorCategoria);
+
+        this.app.use(enrutadorProducto);
+
+        this.app.use(enrutadorVenta_impaga_paga);
     }
 
     //Metodo donde se realizan las configuraciones extras

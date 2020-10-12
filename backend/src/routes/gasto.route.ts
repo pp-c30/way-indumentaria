@@ -8,22 +8,22 @@ import { gastoController } from "../controllers/gasto.controllers";
 let GastoController = new gastoController();
 
 //Creamos una variable constante llamada "enrutadorConsolas", en la que se guardara todas las funciones de Router
-const enrutadorWay = Router();
+const enrutadorGasto = Router();
 
 //Creamos una ruta que realiza una peticion que listara las consolas
-enrutadorWay.route('/gastos').get(GastoController.listaGastos);
+enrutadorGasto.route('/gastos').get(GastoController.listaGastos);
 
 //Ruta que permite guardar datos en la base
-enrutadorWay.route('/gastos').post(GastoController.guardarGasto);
+enrutadorGasto.route('/gastos').post(GastoController.guardarGasto);
 
 //Ruta que permite eliminar datos de la base
-enrutadorWay.route('/gastos/:codigo').delete(GastoController.eliminarGasto);
+enrutadorGasto.route('/gastos/:codigo').delete(GastoController.eliminarGasto);
 
 //Ruta que permite actualzar datos de la base
-enrutadorWay.route('/gastos/:codigo').put(GastoController.actualizarGasto);
+enrutadorGasto.route('/gastos/:codigo').put(GastoController.actualizarGasto);
 
 //Ruta que permite obtener una consola en especifico de la base de datos
-enrutadorWay.route('/gastos/:codigo').get(GastoController.obtenerUnGasto);
+enrutadorGasto.route('/gastos/:codigo').get(GastoController.obtenerUnGasto);
 
 //Exportamos
 export default enrutadorGasto;
