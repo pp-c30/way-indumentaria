@@ -3,12 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Server = void 0;
 //importamos la funcion express desde la carpeta express
 const express_1 = __importDefault(require("express"));
 //Importamos el enrutadorIndex desde el archivo "index.route"
 const index_route_1 = __importDefault(require("./routes/index.route"));
-//Importamos el enrutadorConsolas dede el archivo "consolas.route"
+//Importamos el enrutadorConsolas desde el archivo "consolas.route"
 const gasto_route_1 = __importDefault(require("./routes/gasto.route"));
+const categoria_route_1 = __importDefault(require("./routes/categoria.route"));
+const producto_route_1 = __importDefault(require("./routes/producto.route"));
+const venta_impaga_paga_routes_1 = __importDefault(require("./routes/venta_impaga_paga.routes"));
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 class Server {
     //Es un metodo que se ejecuta por la instancia del servidor
@@ -32,6 +36,9 @@ class Server {
         //Le damos uso al enrutadorIndex
         this.app.use(index_route_1.default);
         this.app.use(gasto_route_1.default);
+        this.app.use(categoria_route_1.default);
+        this.app.use(producto_route_1.default);
+        this.app.use(venta_impaga_paga_routes_1.default);
     }
     //Metodo donde se realizan las configuraciones extras
     middleware() {
