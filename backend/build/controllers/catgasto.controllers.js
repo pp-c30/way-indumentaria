@@ -9,48 +9,54 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.venta_impaga_pagaController = void 0;
+exports.CatgastoController = void 0;
 const database_1 = require("../routes/database");
-class venta_impaga_pagaController {
-    listaVenta_impaga_paga(req, res) {
+// CRUD
+class CatgastoController {
+    //listar
+    listaCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let venta_impaga_paga = yield db.query('select * from venta_impaga_paga');
-            return res.json(venta_impaga_paga);
+            let categoria_gasto = yield db.query('select * from categoria_gasto');
+            return res.json(categoria_gasto);
         });
     }
-    guardarVenta_impaga_paga(req, res) {
+    //guardar
+    guardarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let venta_impaga_paga = req.body;
-            yield db.query('insert into venta_impaga_paga set ?', [venta_impaga_paga]);
-            return res.json('La venta_impaga_paga fue guardada exitosamente');
+            let catg = req.body;
+            yield db.query("insert into categoria_gasto set ?", [catg]);
+            return res.json("La categoria se inserto exitosamente");
         });
     }
-    eliminarVenta_impaga_paga(req, res) {
+    //eliminar
+    eliminarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            yield db.query("delete from venta_impaga_paga where id_venta_impaga_paga = ?", [codigo]);
-            return res.json('La venta_impaga_paga se elimino exitosamente');
+            let id = req.params.id;
+            yield db.query("delete from categoria_gasto where id_categoria_gasto = ?", [id]);
+            return res.json('La categoria se elimino correctamente');
         });
     }
-    actualizarVenta_impaga_paga(req, res) {
+    //actualizar
+    actualizarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let venta_impaga_paga_actualizado = req.body;
-            yield db.query("update venta_impaga_paga set ? where id_venta_impaga_paga = ?", [venta_impaga_paga_actualizado, codigo]);
-            return res.json("Se actualizo exitosamente");
+            let id = req.params.id;
+            let nuevos_datos_catg = req.body;
+            yield db.query("update categoria_gasto set ? where id_categoria_gasto = ?", [nuevos_datos_catg, id]);
+            return res.json('se actualizo correctamente');
         });
     }
-    obtenerUnaVenta_impaga_paga(req, res) {
+    //obtener un solo objeto de la tabla
+    obtenerUnaCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let unaVenta_impaga_paga = yield db.query("select * from venta_impaga_paga where id_venta_impaga_paga = ?", [codigo]);
-            return res.json(unaVenta_impaga_paga[0]);
+            let id = req.params.id;
+            let unaCatg = yield db.query("select * from categoria_gasto where id_categoria_gasto = ? ", [id]);
+            return res.json(unaCatg[0]);
         });
     }
 }
-exports.venta_impaga_pagaController = venta_impaga_pagaController;
+exports.CatgastoController = CatgastoController;
