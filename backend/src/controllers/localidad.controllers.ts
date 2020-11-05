@@ -32,10 +32,14 @@ export class localidadController{
 
         let codigo = req.params.codigo;
 
-        await db.query("delete from localidad where id_localidad = ?",[codigo]);
-
-        return res.json('La localidad se elimino exitosamente');
-
+        try {
+            await db.query("delete from localidad where id_localidad = ?",[codigo]);
+            return res.json('La localidad se elimino exitosamente');
+        }
+        
+        catch (error) {
+            return res.json("No se puede eliminar una localidad que este siendo utilizada por una venta")
+        }
 
     }
 
