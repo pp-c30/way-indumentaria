@@ -31,14 +31,22 @@ export class CatgastoController {
     //eliminar
     public async eliminarCatgasto(req:Request, res:Response){
 
-        const db = await conexion();
+        const conex = await conexion();
+        let id_categoria_gasto = req.params.id;
 
-        let id = req.params.id;
+        try {
+            await conex.query('delete from categoria_gasto where id_categoria_gasto = ?',[id_categoria_gasto]);
+            return res.json("Categoria de gasto eliminada");
 
-        await db.query("delete from categoria_gasto where id_categoria_gasto = ?", [id]);
-
-        return res.json('La categoria se elimino correctamente');
-
+        }catch (error){
+            return res.json("No se puede eliminar una categoria de gasto que este siendo utilizada por un gasto");
+        }
+        
+        
+        //const db = await conexion();
+        //let id = req.params.id;
+        //await db.query("delete from categoria_gasto where id_categoria_gasto = ?", [id]);
+        //return res.json('La categoria se elimino correctamente');
 
     }
     //actualizar

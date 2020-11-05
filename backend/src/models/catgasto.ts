@@ -1,6 +1,6 @@
  
 export interface ICatgasto{
 
-    id_catgasto?:number;
+    id_categoria_gasto?:number;
     descripcion:string;
 }

@@ -33,10 +33,19 @@ class CatgastoController {
     //eliminar
     eliminarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let id = req.params.id;
-            yield db.query("delete from categoria_gasto where id_categoria_gasto = ?", [id]);
-            return res.json('La categoria se elimino correctamente');
+            const conex = yield database_1.conexion();
+            let id_categoria_gasto = req.params.id;
+            try {
+                yield conex.query('delete from categoria_gasto where id_categoria_gasto = ?', [id_categoria_gasto]);
+                return res.json("Categoria de gasto eliminada");
+            }
+            catch (error) {
+                return res.json("No se puede eliminar una categoria de gasto que este siendo utilizada por un gasto");
+            }
+            //const db = await conexion();
+            //let id = req.params.id;
+            //await db.query("delete from categoria_gasto where id_categoria_gasto = ?", [id]);
+            //return res.json('La categoria se elimino correctamente');
         });
     }
     //actualizar
