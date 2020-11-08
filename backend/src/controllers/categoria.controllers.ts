@@ -35,10 +35,14 @@ export class categoriaController {
 
         let codigo = req.params.codigo;
 
-        await db.query("delete from categoria where id_categoria = ?",[codigo]);
+        try {
+            await db.query("delete from categoria where id_categoria = ?",[codigo]);
+            return res.json('La categoria se elimino exitosamente');
+        }
 
-        return res.json('La categoria se elimino exitosamente');
-
+        catch (error) {
+            return res.json("No se puede eliminar una categoria que este siendo utilizada por un producto")
+        }
 
     }
 
