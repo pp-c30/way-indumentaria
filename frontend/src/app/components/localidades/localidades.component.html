@@ -7,14 +7,14 @@
             <thead>
                 <tr>
                     <th>Descripcion</th>
-                    <th>Importe</th>
-                    <th>Categoria</th>
+                    <th>Provincia</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-
+                <tr *ngFor = "let localidad of listLocalidades">
+                    <td>{{localidad.descripcion}}</td>
+                    <td>{{localidad.provincia}}</td>
                 </tr>
             </tbody>
 
@@ -25,7 +25,7 @@
     <div class="col-sm-4">
         
         <div class="card">
-            <div class="card-header">Formulario de gastos</div>
+            <div class="card-header">Formulario de localidades</div>
             <div class="card-body">
                 <form>
                     <div class="form-group">
@@ -33,14 +33,10 @@
                     </div>
 
                     <div class="form-group">
-                        <input placeholder="Ingrese el importe" type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <input placeholder="Ingrese la categoria" type="text" class="form-control">
+                        <input placeholder="Ingrese la provincia" type="text" class="form-control">
                     </div>
                     
-                    <button class="btn btn-success">Guardar un gasto</button>
+                    <button class="btn btn-success">Guardar una localidad</button>
                 </form>
             </div>
         </div>

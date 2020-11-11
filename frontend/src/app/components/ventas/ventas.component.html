@@ -1,0 +1,94 @@
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+                    <th>Fecha_venta</th>
+                    <th>Importe_unitario</th>
+                    <th>Estado</th>
+                    <th>Forma_pago</th>
+                    <th>Descuento_aplicado</th>
+                    <th>Planilla</th>
+                    <th>Vendedor</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor = "let venta of listVentas">
+                    <td>{{venta.producto}}</td>
+                    <td>{{venta.cantidad}}</td>
+                    <td>{{venta.importe}}</td>
+                    <td>{{venta.fecha_venta}}</td>
+                    <td>{{venta.importe_unitario}}</td>
+                    <td>{{venta.estado}}</td>
+                    <td>{{venta.forma_pago}}</td>
+                    <td>{{venta.descuento_aplicado}}</td>
+                    <td>{{venta.planilla}}</td>
+                    <td>{{venta.vendedor}}</td>
+                </tr>
+            </tbody>
+
+        </table>>
+
+    </div>
+
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de gastos</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el producto" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Ingrese la cantidad" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Ingrese el importe" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese la fecha de venta" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese el importe unitario" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese el estado" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese la forma de pago" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese el descuento aplicado" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Ingrese la planilla" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input placeholder="Ingrese el vendedor" type="text" class="form-control">
+                    </div>
+                    
+                    <button class="btn btn-success">Guardar venta</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

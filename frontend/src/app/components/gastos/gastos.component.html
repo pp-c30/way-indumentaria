@@ -1,0 +1,52 @@
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Importe</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor = "let gasto of listGastos">
+                    <td>{{gasto.descripcion}}</td>
+                    <td>{{gasto.importe}}</td>
+                    <td>{{gasto.categoria}}</td>
+                </tr>
+            </tbody>
+
+        </table>>
+
+    </div>
+
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de gastos</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input placeholder="Ingrese la descripcion" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Ingrese el importe" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Ingrese la categoria" type="text" class="form-control">
+                    </div>
+                    
+                    <button class="btn btn-success">Guardar un gasto</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
