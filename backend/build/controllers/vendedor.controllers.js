@@ -9,53 +9,53 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.categoriaController = void 0;
+exports.vendedorController = void 0;
 const database_1 = require("../routes/database");
-class categoriaController {
-    listaCategoria(req, res) {
+class vendedorController {
+    listaVendedores(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let categoria = yield db.query('select * from categoria');
-            return res.json(categoria);
+            let vendedores = yield db.query('select * from vendedor');
+            return res.json(vendedores);
         });
     }
-    guardarCategoria(req, res) {
+    guardarVendedor(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let categoria = req.body;
-            yield db.query('insert into categoria set ?', [categoria]);
-            return res.json('La categoria fue guardada exitosamente');
+            let vendedor = req.body;
+            yield db.query('insert into vendedor set ?', [vendedor]);
+            return res.json('El vendedor fue guardado exitosamente');
         });
     }
-    eliminarCategoria(req, res) {
+    eliminarVendedor(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
             let codigo = req.params.codigo;
             try {
-                yield db.query("delete from categoria where id_categoria = ?", [codigo]);
-                return res.json('La categoria se elimino exitosamente');
+                yield db.query("delete from vendedor where id_vendedor = ?", [codigo]);
+                return res.json('El vendedor se elimino exitosamente');
             }
             catch (error) {
-                return res.json("No se puede eliminar una categoria que este siendo utilizada por un producto");
+                return res.json("No se puede eliminar un vendedor que este siendo utilizado por una venta");
             }
         });
     }
-    actualizarCategoria(req, res) {
+    actualizarVendedor(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
             let codigo = req.params.codigo;
-            let categoria_actualizado = req.body;
-            yield db.query("update categoria set ? where id_categoria = ?", [categoria_actualizado, codigo]);
+            let vendedor_actualizado = req.body;
+            yield db.query("update vendedor set ? where id_vendedor = ?", [vendedor_actualizado, codigo]);
             return res.json("Se actualizo exitosamente");
         });
     }
-    obtenerUnaCategoria(req, res) {
+    obtenerUnVendedor(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
             let codigo = req.params.codigo;
-            let unaCategoria = yield db.query("select * from categoria where id_categoria = ?", [codigo]);
-            return res.json(unaCategoria[0]);
+            let unVendedor = yield db.query("select * from vendedor where id_vendedor = ?", [codigo]);
+            return res.json(unVendedor[0]);
         });
     }
 }
-exports.categoriaController = categoriaController;
+exports.vendedorController = vendedorController;

@@ -11,6 +11,8 @@ import enrutadorProducto from "./routes/producto.route";
 import enrutadorVenta_impaga_paga from "./routes/venta_impaga_paga.routes";
 import enrutadorVenta from "./routes/venta.route";
 import enrutadorLocalidad from "./routes/localidad.route";
+import enrutadorCatgasto from "./routes/catgasto.route";
+import  cors  from "cors";
 
 
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
@@ -49,6 +51,8 @@ export class Server {
         //Le damos uso al enrutadorIndex
         this.app.use(enrutadorIndex);
 
+        this.app.use(enrutadorCatgasto);
+
         this.app.use(enrutadorGasto);
 
         this.app.use(enrutadorCategoria);
@@ -67,6 +71,8 @@ export class Server {
     {
         //Especificamos que "app" use formato "json"
         this.app.use(express.json());
+
+        this.app.use(cors());
     }
 
     //Metodo encargado de correr el servidor bajo un puerto determinado

@@ -20,7 +20,7 @@ function conexion() {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'rest_api'
+            database: 'way'
         });
         //Entrega una respuesta
         return connect;

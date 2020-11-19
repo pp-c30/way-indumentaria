@@ -8,13 +8,15 @@ import { GastosComponent } from './components/gastos/gastos.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 
 import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { CategoriaGastosComponent } from './components/categoria-gastos/categoria-gastos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocalidadesComponent,
     GastosComponent,
-    VentasComponent
+    VentasComponent,
+    CategoriaGastosComponent
   ],
   imports: [
     BrowserModule,

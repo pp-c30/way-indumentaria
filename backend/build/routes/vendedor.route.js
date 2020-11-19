@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const vendedor_controllers_1 = require("../controllers/vendedor.controllers");
+let VendedorController = new vendedor_controllers_1.vendedorController();
+const enrutadorVendedor = express_1.Router();
+enrutadorVendedor.route('/vendedores').get(VendedorController.listaVendedores);
+enrutadorVendedor.route('/vendedores').post(VendedorController.guardarVendedor);
+enrutadorVendedor.route('/vendedores/:codigo').delete(VendedorController.eliminarVendedor);
+enrutadorVendedor.route('/vendedores/:codigo').put(VendedorController.actualizarVendedor);
+enrutadorVendedor.route('/vendedores/:codigo').get(VendedorController.obtenerUnVendedor);
+exports.default = enrutadorVendedor;

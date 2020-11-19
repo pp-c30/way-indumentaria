@@ -15,6 +15,8 @@ const producto_route_1 = __importDefault(require("./routes/producto.route"));
 const venta_impaga_paga_routes_1 = __importDefault(require("./routes/venta_impaga_paga.routes"));
 const venta_route_1 = __importDefault(require("./routes/venta.route"));
 const localidad_route_1 = __importDefault(require("./routes/localidad.route"));
+const catgasto_route_1 = __importDefault(require("./routes/catgasto.route"));
+const cors_1 = __importDefault(require("cors"));
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 class Server {
     //Es un metodo que se ejecuta por la instancia del servidor
@@ -37,6 +39,7 @@ class Server {
     routes() {
         //Le damos uso al enrutadorIndex
         this.app.use(index_route_1.default);
+        this.app.use(catgasto_route_1.default);
         this.app.use(gasto_route_1.default);
         this.app.use(categoria_route_1.default);
         this.app.use(producto_route_1.default);
@@ -48,6 +51,7 @@ class Server {
     middleware() {
         //Especificamos que "app" use formato "json"
         this.app.use(express_1.default.json());
+        this.app.use(cors_1.default());
     }
     //Metodo encargado de correr el servidor bajo un puerto determinado
     listen() {
