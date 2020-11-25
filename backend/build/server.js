@@ -16,6 +16,7 @@ const venta_impaga_paga_routes_1 = __importDefault(require("./routes/venta_impag
 const venta_route_1 = __importDefault(require("./routes/venta.route"));
 const localidad_route_1 = __importDefault(require("./routes/localidad.route"));
 const catgasto_route_1 = __importDefault(require("./routes/catgasto.route"));
+const provincia_route_1 = __importDefault(require("./routes/provincia.route"));
 const cors_1 = __importDefault(require("cors"));
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
 class Server {
@@ -46,6 +47,7 @@ class Server {
         this.app.use(venta_impaga_paga_routes_1.default);
         this.app.use(venta_route_1.default);
         this.app.use(localidad_route_1.default);
+        this.app.use(provincia_route_1.default);
     }
     //Metodo donde se realizan las configuraciones extras
     middleware() {

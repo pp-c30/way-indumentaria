@@ -8,7 +8,7 @@ export class provinciaController{
 
         const db = await conexion();
 
-        let provincias = await db.query('select * from ');
+        let provincias = await db.query('select * from provincia');
 
         return res.json(provincias);
     }
@@ -17,24 +17,26 @@ export class provinciaController{
 
         const db = await conexion();
 
-        let localidad:IProvincia = req.body;
+        let provincia:IProvincia = req.body;
 
-        await db.query('insert into localidad set ?',[localidad]);
+        await db.query('insert into provincia set ?',[provincia]);
 
-        return res.json('La localidad fue guardada exitosamente'); 
+        return res.json('La provincia fue guardada exitosamente'); 
 
     }
 
-    public async eliminarLocalidad(req:Request,res:Response)
+    public async eliminarProvincia(req:Request,res:Response)
     {
         const conex = await conexion();
-        let id_provincia = req.params.id;
+
+        let id_provincia = req.params.codigo;
 
         try {
             await conex.query('delete from provincia where id_provincia = ?',[id_provincia]);
             return res.json("Provincia eliminada");
 
-        }catch (error){
+        }
+        catch (error){
             return res.json("No se puede eliminar la provincia que este siendo utilizada por una localidad");
         }
 

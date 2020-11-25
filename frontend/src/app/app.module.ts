@@ -9,6 +9,7 @@ import { VentasComponent } from './components/ventas/ventas.component';
 
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { CategoriaGastosComponent } from './components/categoria-gastos/categoria-gastos.component';
+import { ProvinciasComponent } from './components/provincias/provincias.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CategoriaGastosComponent } from './components/categoria-gastos/categori
     LocalidadesComponent,
     GastosComponent,
     VentasComponent,
-    CategoriaGastosComponent
+    CategoriaGastosComponent,
+    ProvinciasComponent
   ],
   imports: [
     BrowserModule,

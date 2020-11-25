@@ -12,6 +12,7 @@ import enrutadorVenta_impaga_paga from "./routes/venta_impaga_paga.routes";
 import enrutadorVenta from "./routes/venta.route";
 import enrutadorLocalidad from "./routes/localidad.route";
 import enrutadorCatgasto from "./routes/catgasto.route";
+import enrutadorProvincia from "./routes/provincia.route";
 import  cors  from "cors";
 
 
@@ -64,6 +65,8 @@ export class Server {
         this.app.use(enrutadorVenta);
 
         this.app.use(enrutadorLocalidad);
+
+        this.app.use(enrutadorProvincia);
     }
 
     //Metodo donde se realizan las configuraciones extras

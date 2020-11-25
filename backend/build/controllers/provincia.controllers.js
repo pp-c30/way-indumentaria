@@ -15,22 +15,22 @@ class provinciaController {
     listaProvincias(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let provincias = yield db.query('select * from ');
+            let provincias = yield db.query('select * from provincia');
             return res.json(provincias);
         });
     }
     guardarProvincias(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let localidad = req.body;
-            yield db.query('insert into localidad set ?', [localidad]);
-            return res.json('La localidad fue guardada exitosamente');
+            let provincia = req.body;
+            yield db.query('insert into provincia set ?', [provincia]);
+            return res.json('La provincia fue guardada exitosamente');
         });
     }
-    eliminarLocalidad(req, res) {
+    eliminarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conex = yield database_1.conexion();
-            let id_provincia = req.params.id;
+            let id_provincia = req.params.codigo;
             try {
                 yield conex.query('delete from provincia where id_provincia = ?', [id_provincia]);
                 return res.json("Provincia eliminada");
