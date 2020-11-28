@@ -14,6 +14,7 @@ import enrutadorLocalidad from "./routes/localidad.route";
 import enrutadorCatgasto from "./routes/catgasto.route";
 import enrutadorProvincia from "./routes/provincia.route";
 import  cors  from "cors";
+import enrutadorVendedor from "./routes/vendedor.route";
 
 
 //Clase donde estaran creados los atributos, metodos y donde seran ejecutados
@@ -67,6 +68,8 @@ export class Server {
         this.app.use(enrutadorLocalidad);
 
         this.app.use(enrutadorProvincia);
+
+        this.app.use(enrutadorVendedor);
     }
 
     //Metodo donde se realizan las configuraciones extras

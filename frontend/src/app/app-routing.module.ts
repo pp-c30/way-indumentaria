@@ -5,6 +5,7 @@ import { GastosComponent } from "./components/gastos/gastos.component";
 import { LocalidadesComponent } from "./components/localidades/localidades.component";
 import { ProvinciasComponent } from "./components/provincias/provincias.component";
 import { VentasComponent } from "./components/ventas/ventas.component";
+import { VendedoresComponent } from "./components/vendedores/vendedores.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path:"ventas",component:VentasComponent
+  },
+  {
+    path:"vendedores",component:VendedoresComponent
   },
 ];
 

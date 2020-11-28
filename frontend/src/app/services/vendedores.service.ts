@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { IVendedor } from "../models/vendedor";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class VendedoresService {
+
+  constructor( private http:HttpClient ) { }
+
+  getVendedores(){
+
+    return this.http.get<IVendedor[]>('http://localhost:3000/vendedores');
+
+
+   }
+
+}

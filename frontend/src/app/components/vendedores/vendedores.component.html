@@ -1,0 +1,115 @@
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Domicilio</th>
+                    <th>Email</th>
+                    <th>Localidad</th>
+                    <th>Adjunto</th>
+                    <th>Telefono</th>
+                    <th>Nombre del garante</th>
+                    <th>Apellido del garante</th>
+                    <th>DNI del garante</th>
+                    <th>Domicilio del garante</th>
+                    <th>Telefono del garante</th>
+                    <th>Estado</th>
+                    
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor = "let vendedor of listVendedores">
+                    <td>{{vendedor.nombre}}</td>
+                    <td>{{vendedor.apellido}}</td>
+                    <td>{{vendedor.dni}}</td>
+                    <td>{{vendedor.domicilio}}</td>
+                    <td>{{vendedor.email}}</td>
+                    <td>{{vendedor.localidad}}</td>
+                    <td>{{vendedor.adjunto}}</td>
+                    <td>{{vendedor.telefono}}</td>
+                    <td>{{vendedor.nom_garante}}</td>
+                    <td>{{vendedor.ape_garante}}</td>
+                    <td>{{vendedor.email_garante}}</td>
+                    <td>{{vendedor.dni_garante}}</td>
+                    <td>{{vendedor.domicilio_garante}}</td>
+                    <td>{{vendedor.telefono_garante}}</td>
+                    <td>{{vendedor.estado}}</td>
+
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de vendedores</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input placeholder="Ingrese en nombre" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el apellido" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el dni" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el domicilio" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el email" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese la localidad" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el adjunto " type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el telefono" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el nombre del garante" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el apellido del garante" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el DNI del garante" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el domicilio del garante" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el telefono del garante" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="Ingrese el estado" type="text" class="form-control">
+                    </div>
+
+
+
+                    
+                    
+                    <button class="btn btn-success">Guardar un vendedor</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
