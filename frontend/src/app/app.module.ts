@@ -13,6 +13,8 @@ import { ProvinciasComponent } from './components/provincias/provincias.componen
 import { MenupComponent } from './components/menup/menup.component';
 import { VendedoresComponent } from './components/vendedores/vendedores.component';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { VendedoresComponent } from './components/vendedores/vendedores.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

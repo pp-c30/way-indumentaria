@@ -15,6 +15,12 @@ export class ProvinciasService {
 
     return this.http.get<IProvincia[]>('http://localhost:3000/provincias');
 
+   }
+
+   saveProvincias(unaProvincia:IProvincia){
+
+    return this.http.post('http://localhost:3000/provincias', unaProvincia);
+    
 
    }
 }
