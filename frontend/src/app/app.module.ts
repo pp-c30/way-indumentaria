@@ -11,6 +11,9 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { CategoriaGastosComponent } from './components/categoria-gastos/categoria-gastos.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { MenupComponent } from './components/menup/menup.component';
+import { VendedoresComponent } from './components/vendedores/vendedores.component';
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +23,15 @@ import { MenupComponent } from './components/menup/menup.component';
     VentasComponent,
     CategoriaGastosComponent,
     ProvinciasComponent,
-    MenupComponent
+    MenupComponent,
+    VendedoresComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

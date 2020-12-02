@@ -28,9 +28,12 @@
         <div class="card">
             <div class="card-header">Formulario de provincias</div>
             <div class="card-body">
-                <form>
+
+
+                <form [formGroup]="formProvincia" (ngSubmit)= "guardarProvincia()">
+
                     <div class="form-group">
-                        <input placeholder="Ingrese la descripcion" type="text" class="form-control">
+                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
                     </div>
 
                     
