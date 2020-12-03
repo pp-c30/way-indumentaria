@@ -16,5 +16,12 @@ export class CategoriaGastosService {
         return this.http.get<ICategoria_gasto[]>('http://localhost:3000/categoria_gasto');
       }
 
+      saveCategorias_gasto(unaCategoria_gasto:ICategoria_gasto){
+
+        return this.http.post('http://localhost:3000/categoria_gasto', unaCategoria_gasto);
+        
+    
+       }
+
  
 }

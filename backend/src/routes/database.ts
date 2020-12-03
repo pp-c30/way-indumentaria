@@ -9,7 +9,7 @@ export async function conexion()
         host:'localhost',
         user:'root',
         password:'',
-        database:'way5'
+        database:'way'
     });
 
     //Entrega una respuesta

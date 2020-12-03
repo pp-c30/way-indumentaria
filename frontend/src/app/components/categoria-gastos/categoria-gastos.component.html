@@ -9,7 +9,7 @@
                     <th>Descripcion</th>
 
                 </tr>
-            </thead>
+            </thead> 
 
             <tbody>
                 <tr *ngFor = "let categoria_gasto of listCategoria_gasto">
@@ -27,15 +27,19 @@
         <div class="card">
             <div class="card-header">Formulario de categorias de gastos</div>
             <div class="card-body">
-                <form>
+
+
+                <form [formGroup]="formCategoria_gasto" (ngSubmit)= "guardarCategoria_gasto()">
                     <div class="form-group">
-                        <input placeholder="Ingrese la descripcion" type="text" class="form-control">
+                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
                     </div>
 
                     
                     
                     <button class="btn btn-success">Guardar una categoria de gasto</button>
                 </form>
+
+
             </div>
         </div>
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-
 import { CategoriaGastosService } from "../../services/categoria-gastos.service"
+
+import { FormBuilder , FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-categoria-gastos',
@@ -12,7 +13,19 @@ export class CategoriaGastosComponent implements OnInit {
 
   listCategoria_gasto = [];
 
-  constructor( private categoria_gastoServ: CategoriaGastosService ) { }
+  formCategoria_gasto: FormGroup;
+
+  constructor( private categoria_gastoServ: CategoriaGastosService, private fb: FormBuilder ) { 
+
+
+    this.formCategoria_gasto = this.fb.group({
+      
+      descripcion:['']
+
+
+    })
+
+   }
 
   ngOnInit(): void {
     this.obtenerCategoria_gasto();
@@ -26,6 +39,22 @@ export class CategoriaGastosComponent implements OnInit {
            
       )
     }
+
+    guardarCategoria_gasto(){
+      // console.log(this.formProvincia.value);
+      this.categoria_gastoServ.saveCategorias_gasto(this.formCategoria_gasto.value).subscribe(
+        resultado => {
+          console.log(resultado);
+          this.obtenerCategoria_gasto();//se refresca la grilla
+          this.formCategoria_gasto.reset();
+        },
+        error => console.log(error)
+  
+      )
+  
+    }
+
+    
 
 
 
