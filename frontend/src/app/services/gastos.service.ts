@@ -17,10 +17,8 @@ export class GastosService {
       return this.http.get<IGasto[]>('http://localhost:3000/gastos');
    }
 
-   saveGastos(unGasto:IGasto){
-
-    return this.http.post('http://localhost:3000/provincias', unGasto);
-    
-
+   saveGasto(unGasto:IGasto)
+   {
+     return this.http.post('http://localhost:3000/gastos',unGasto);
    }
 }

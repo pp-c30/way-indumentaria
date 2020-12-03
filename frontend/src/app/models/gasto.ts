@@ -3,4 +3,5 @@ export interface IGasto {
     descripcion:string;
     importe:number;
     categoria:string;
+    descripcion_categoria?:string;
 }

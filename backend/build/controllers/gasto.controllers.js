@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gastoController = void 0;
 //Importamos la funcion "conexion" desde el archivo database
 const database_1 = require("../routes/database");
 //Clase que nos permitira almacenar metodos
@@ -20,7 +19,7 @@ class gastoController {
             //Guardamos la funcion "conexion" en las constante "db", para lograr la conexion con la base de datos
             const db = yield database_1.conexion();
             //Realizamos la consulta para mostrar los datos de la tabla consolas
-            let gastos = yield db.query('select * from gasto');
+            let gastos = yield db.query('select g.id_gasto,g.descripcion,g.importe,cg.descripcion as descripcion_categoria from gasto g, categoria_gasto cg where g.categoria = cg.id_categoria_gasto');
             //Retorna una respuesta en formato json de pagos
             return res.json(gastos);
         });

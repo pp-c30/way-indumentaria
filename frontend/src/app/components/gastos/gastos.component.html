@@ -9,6 +9,7 @@
                     <th>Descripcion</th>
                     <th>Importe</th>
                     <th>Categoria</th>
+                    <th>Operaciones</th>
                 </tr>
             </thead>
 
@@ -16,7 +17,13 @@
                 <tr *ngFor = "let gasto of listGastos">
                     <td>{{gasto.descripcion}}</td>
                     <td>{{gasto.importe}}</td>
-                    <td>{{gasto.categoria}}</td>
+                    <td>{{gasto.descripcion_categoria}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-danger">Eliminar</button>
+                            <button class="btn btn-primary">Editar</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
 
@@ -39,7 +46,12 @@
                     </div>
 
                     <div class="form-group">
-                        <input formControlName="categoria" placeholder="Ingrese la categoria" type="text" class="form-control">
+                        <select name="" id="" formControlName="categoria" class="form-control">
+                            <option value="0" disabled selected>Seleccione una categoria</option>
+                            <option  *ngFor="let fila of listCatGastos" [value]="fila.id_categoria_gasto">
+                                {{fila.descripcion}}
+                            </option>
+                        </select>
                     </div>
                     
                     <button class="btn btn-success">Guardar un gasto</button>
