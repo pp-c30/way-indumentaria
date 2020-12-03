@@ -8,7 +8,7 @@ export class localidadController{
 
         const db = await conexion();
 
-        let localidades = await db.query('select * from localidad');
+        let localidades = await db.query('select l.id_localidad,l.descripcion,l.provincia, p.descripcion as descripcion_provincia from localidad l, provincia p where l.provincia = p.id_provincia');
 
         return res.json(localidades);
     }

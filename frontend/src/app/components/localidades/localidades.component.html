@@ -14,7 +14,7 @@
             <tbody>
                 <tr *ngFor = "let localidad of listLocalidades">
                     <td>{{localidad.descripcion}}</td>
-                    <td>{{localidad.provincia}}</td>
+                    <td>{{localidad.descripcion_provincia}}</td>
                 </tr>
             </tbody>
 
@@ -27,13 +27,18 @@
         <div class="card">
             <div class="card-header">Formulario de localidades</div>
             <div class="card-body">
-                <form>
+                <form [formGroup]="formLocalidad" (ngsubmit)="guardarLocalidad()">
                     <div class="form-group">
-                        <input placeholder="Ingrese la descripcion" type="text" class="form-control">
+                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <input placeholder="Ingrese la provincia" type="text" class="form-control">
+                        <select name="" id="" formControlName="provincia" class="form-control">
+                            <option value="0" disabled selected>Seleccione una provincia</option>
+                            <option *ngFor="let fila of listLocProvincias" [value]="fila.id_provincia">
+                                {{fila.descripcion}}
+                            </option>
+                        </select>
                     </div>
                     
                     <button class="btn btn-success">Guardar una localidad</button>

@@ -16,4 +16,9 @@ export class LocalidadesService {
    {
       return this.http.get<ILocalidad[]>('http://localhost:3000/localidades');
    }
+
+   saveLocalidad(unaLocalidad:ILocalidad)
+   {
+      return this.http.post('http://localhost:3000/localidades',unaLocalidad);
+   }
 }
