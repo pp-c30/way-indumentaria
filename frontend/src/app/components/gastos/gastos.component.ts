@@ -27,7 +27,7 @@ export class GastosComponent implements OnInit {
       categoria:[0]
     })
    }
-
+//se ejecuta cuando arranca el componente
   ngOnInit(): void {
     this.obtenerGastos();
     this.obtenerCategoriaGastos();

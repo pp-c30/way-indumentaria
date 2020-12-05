@@ -7,6 +7,7 @@ export interface IVendedor{
     domicilio:string;
     email:string;
     localidad:number;
+    descripcion:string;
     adjunto:Text;
     telefono:number;
     nom_garante:string;

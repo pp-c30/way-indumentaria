@@ -45,7 +45,7 @@ export class ProvinciasComponent implements OnInit {
       resultado => {
         console.log(resultado);
         this.obtenerProvincias();//se refresca la grilla
-        this.formProvincia.reset();
+        this.formProvincia.reset();//se refresca el formulario
       },
       error => console.log(error)
 
