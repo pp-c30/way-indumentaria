@@ -19,7 +19,7 @@ function conexion() {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'way'
+            database: 'way5'
         });
         //Entrega una respuesta
         return connect;

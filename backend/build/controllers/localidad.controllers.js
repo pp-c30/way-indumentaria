@@ -14,7 +14,7 @@ class localidadController {
     listaLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let localidades = yield db.query('select l.id_localidad,l.descripcion,l.provincia, p.descripcion as descripcion_provincia from localidad l, provincia p where l.provincia = p.id_provincia');
+            let localidades = yield db.query('select l.id_localidad,l.descripcion, p.descripcion as descripcion_provincia from localidad l, provincia p where l.provincia = p.id_provincia');
             return res.json(localidades);
         });
     }

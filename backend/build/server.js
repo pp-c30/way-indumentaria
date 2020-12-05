@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //importamos la funcion express desde la carpeta express
 const express_1 = __importDefault(require("express"));
+const morgan_1 = __importDefault(require("morgan"));
 //Importamos el enrutadorIndex desde el archivo "index.route"
 const index_route_1 = __importDefault(require("./routes/index.route"));
 //Importamos los enrutadores
@@ -55,6 +56,7 @@ class Server {
         //Especificamos que "app" use formato "json"
         this.app.use(express_1.default.json());
         this.app.use(cors_1.default());
+        this.app.use(morgan_1.default('dev'));
     }
     //Metodo encargado de correr el servidor bajo un puerto determinado
     listen() {

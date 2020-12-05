@@ -1,6 +1,8 @@
 //importamos la funcion express desde la carpeta express
 import express, { Application } from "express";
 
+import morgan from "morgan";
+
 //Importamos el enrutadorIndex desde el archivo "index.route"
 import enrutadorIndex from "./routes/index.route";
 
@@ -79,6 +81,8 @@ export class Server {
         this.app.use(express.json());
 
         this.app.use(cors());
+
+        this.app.use(morgan('dev'));
     }
 
     //Metodo encargado de correr el servidor bajo un puerto determinado
