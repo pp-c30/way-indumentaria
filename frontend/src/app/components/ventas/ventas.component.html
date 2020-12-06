@@ -43,45 +43,45 @@
         <div class="card">
             <div class="card-header">Formulario de gastos</div>
             <div class="card-body">
-                <form>
+                <form [formGroup]="formVenta" (ngSubmit)="guardarVenta()">
                     <div class="form-group">
-                        <input placeholder="Ingrese el producto" type="text" class="form-control">
+                        <input formControlName="producto" placeholder="Ingrese el producto" type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <input placeholder="Ingrese la cantidad" type="text" class="form-control">
+                        <input formControlName="cantidad" placeholder="Ingrese la cantidad" type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <input placeholder="Ingrese el importe" type="text" class="form-control">
+                        <input formControlName="importe" placeholder="Ingrese el importe" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese la fecha de venta" type="text" class="form-control">
+                        <input formControlName="fecha_venta" placeholder="Ingrese la fecha de venta" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese el importe unitario" type="text" class="form-control">
+                        <input formControlName="importe_unitario" placeholder="Ingrese el importe unitario" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese el estado" type="text" class="form-control">
+                        <input formControlName="estado" placeholder="Ingrese el estado" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese la forma de pago" type="text" class="form-control">
+                        <input formControlName="forma_pago" placeholder="Ingrese la forma de pago" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese el descuento aplicado" type="text" class="form-control">
+                        <input formControlName="descuento_aplicado" placeholder="Ingrese el descuento aplicado" type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <input placeholder="Ingrese la planilla" type="text" class="form-control">
+                        <input formControlName="planilla" placeholder="Ingrese la planilla" type="text" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <input placeholder="Ingrese el vendedor" type="text" class="form-control">
+                        <input formControlName="vendedor" placeholder="Ingrese el vendedor" type="text" class="form-control">
                     </div>
                     
                     <button class="btn btn-success">Guardar venta</button>

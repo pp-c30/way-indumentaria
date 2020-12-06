@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { VentasService } from "../../services/ventas.service";
 
+import { FormBuilder, FormGroup } from "@angular/forms";
+
+import { VendedoresService } from "../../services/vendedores.service";
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -11,7 +15,26 @@ export class VentasComponent implements OnInit {
 
   listVentas = [];
 
-  constructor(private ventasServ:VentasService) { }
+  formVenta: FormGroup;
+
+  constructor(private ventasServ:VentasService, private fb: FormBuilder) {
+
+    this.formVenta = this.fb.group({
+      
+      producto:[''],
+      cantidad:[''],
+      importe:[''],
+      fecha_venta:[''],
+      importe_unitario:[''],
+      estado:[''],
+      forma_pago:[''],
+      descuento_aplicado:[''],
+      planilla:[''],
+      vendedor:['']
+
+    });
+
+   }
 
   ngOnInit(): void {
     this.obtenerVentas
@@ -23,6 +46,16 @@ export class VentasComponent implements OnInit {
       resultado => this.listVentas = resultado,
       error => console.log(error),
     )
+  }
+
+  guardarVenta()
+  {
+    this.ventasServ.saveVenta(this.formVenta.value).subscribe(
+      resultado => {
+        console.log(resultado);
+        this.obtenerVentas();
+      }
+    );
   }
 
 }

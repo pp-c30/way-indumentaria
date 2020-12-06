@@ -17,4 +17,9 @@ export class VentasService {
      return this.http.get<IVenta[]>('http://localhost:3000/ventas');
   }
 
+  saveVenta(unaVenta:IVenta)
+  {
+    return this.http.post('http://localhost:3000/ventas',unaVenta);
+  }
+
 }
