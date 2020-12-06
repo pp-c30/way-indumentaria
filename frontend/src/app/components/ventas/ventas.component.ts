@@ -6,6 +6,10 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { VendedoresService } from "../../services/vendedores.service";
 
+import { VentasImpagasPagasService } from "../../services/ventas-impagas-pagas.service";
+
+import { ProductosService } from "../../services/productos.service";
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -15,9 +19,13 @@ export class VentasComponent implements OnInit {
 
   listVentas = [];
 
+  listProVentas = [];
+
+  listImpPagVentas = [];
+
   formVenta: FormGroup;
 
-  constructor(private ventasServ:VentasService, private fb: FormBuilder) {
+  constructor(private ventasServ:VentasService, private fb: FormBuilder, private ventasProServ:ProductosService, private ventasImpPagServ:VentasImpagasPagasService, private ventasVend:VendedoresService) {
 
     this.formVenta = this.fb.group({
       
