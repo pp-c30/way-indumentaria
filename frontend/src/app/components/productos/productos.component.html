@@ -1,1 +1,99 @@
-<p>productos works!</p>
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>codigo</th>
+                    <th>descripcion</th>
+                    <th>precio_compra</th>
+                    <th>precio_way</th>
+                    <th>precio_final</th>
+                    <th>categoria</th>
+                    <th>estado</th>
+                    <th>descuento</th>
+                    <th>categoria_sexo</th>
+                    <th>fecha_carga</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor = "let producto of listProductos">
+                    <td>{{producto.codigo}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{{producto.precio_compra}}</td>
+                    <td>{{producto.precio_way}}</td>
+                    <td>{{producto.precio_final}}</td>
+                    <td>{{producto.categoria}}</td>
+                    <td>{{producto.estado}}</td>
+                    <td>{{producto.descuento}}</td>
+                    <td>{{producto.categoria_sexo}}</td>
+                    <td>{{producto.fecha_carga}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="card">
+            <div class="card-header">Formulario de productos</div>
+            <div class="card-body">
+                <form [formGroup]="formProducto" (ngSubmit)= "guardarProducto()">
+                    <div class="form-group">
+                        <input formControlName="codigo" placeholder="Ingrese el codigo" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="precio_compra" placeholder="Ingrese el precio de la compra" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="precio_way" placeholder="Ingrese el precio de way" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="precio_final" placeholder="Ingrese el precio final" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <select name="" id="" formControlName="categoria" class="form-control">
+                            <option value="0" disabled selected>Seleccione una categoria</option>
+                            <option  *ngFor="let fila of listCategoria" [value]="fila.id_categoria">
+                                {{fila.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="estado" placeholder="Ingrese el estado" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="descuento" placeholder="Ingrese el descuento" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="categoria_sexo" placeholder="Ingrese el sexo" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="fecha_carga" placeholder="Ingrese la fecha de carga" type="text" class="form-control">
+                    </div>
+
+                    <button class="btn btn-success">Guardar un producto</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
