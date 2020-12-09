@@ -16,4 +16,6 @@ export interface IVendedor{
     dni_garante:number;
     domicilio_garante:string;
     telefono_garante:string;
+    estado:number;
+    id_localidad:number;
 }

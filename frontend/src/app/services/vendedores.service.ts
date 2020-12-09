@@ -24,4 +24,13 @@ export class VendedoresService {
 
    }
 
+   updateVendedor(unVendedor:IVendedor){
+
+    let id:number = unVendedor.id_vendedor;
+
+    return this.http.put('http://localhost:3000/vendedores/'+id,unVendedor);
+
+
+   }
+
 }

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ventaController = void 0;
 const database_1 = require("../routes/database");
 class ventaController {
     listaVentas(req, res) {

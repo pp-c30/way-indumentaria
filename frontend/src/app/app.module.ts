@@ -18,6 +18,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { VentasImpagasPagasComponent } from './components/ventas-impagas-pagas/ventas-impagas-pagas.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
