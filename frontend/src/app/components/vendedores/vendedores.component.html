@@ -34,7 +34,7 @@
                 <tr *ngFor = "let vendedor of listVendedores">
                    
 
-                     <td>{{vendedor.id_vendedor}}</td> 
+                     <td>{{vendedor.id_vendedor}}</td>  
                     <td>{{vendedor.nombre}}</td>
                     <td>{{vendedor.apellido}}</td>
                     <td>{{vendedor.dni}}</td>
@@ -55,9 +55,9 @@
                     </td>
                     <td>
                          <div class="btn-group btn-group-sm" >
-                        <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                        <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarVendedor(vendedor)"> <i class="fas fa-edit"></i> </button>
-                        <button class="btn btn-primary"   data-toggle="modal" data-target="#myModal" (click)="verDatosGarante(vendedor)" ><i class="fas fa-eye"></i></button>
+                         <button class="btn btn-danger" (click)="eliminarVendedor(vendedor.id_vendedor)"  ><i class="fas fa-trash"></i></button> <!-- eliminar -->
+                        <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarVendedor(vendedor)"> <i class="fas fa-edit"></i> </button><!-- modificar -->
+                        <button class="btn btn-primary"   data-toggle="modal" data-target="#myModal" (click)="verDatosGarante(vendedor)" ><i class="fas fa-eye"></i></button> <!-- ver mas -->
                     </div>
                     </td>
 
@@ -89,7 +89,7 @@
         <form [formGroup]="formVendedor" (ngSubmit)="guardarVendedores()">
         <div class="modal-body">
 
-                 <input formControlName='id_vendedor' type="text"> 
+                 <!-- <input formControlName='id_vendedor' type="text">  -->
             
                 <div class="form-group">
                     <input formControlName="nombre" placeholder="Ingrese en nombre" type="text" class="form-control">
@@ -109,7 +109,7 @@
 
 
                 <div class="form-group">
-                    <select name="" id="" formControlName="localidad" class="form-control">
+                    <select name="" id="" formControlName="localidad" class="form-control" placeholder="">
                         <option value="0" disabled selected>Seleccione una localidad</option>
                         <option  *ngFor="let fila of listVendedoresLoc" [value]="fila.id_localidad">
                             {{fila.descripcion}}
@@ -144,10 +144,10 @@
                     <input formControlName="telefono_garante" placeholder="Ingrese el telefono del garante" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <select name="" id="" formControlName="estado" class="form-control">
+                    <select name="" id="" formControlName="estado" class="form-control" placeholder="">
                         <option value="-1" disabled selected>Seleccione un estado</option>
-                        <option value="0" disabled selected>Inactivo</option>
-                        <option value="1" disabled selected>Activo</option>
+                        <option value="0" active selected>Inactivo</option>
+                        <option value="1" active selected>Activo</option>
                     </select>
                 </div>
 
@@ -194,7 +194,7 @@
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
         </div>
   
       </div>

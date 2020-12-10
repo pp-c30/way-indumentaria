@@ -137,4 +137,23 @@ export class VendedoresComponent implements OnInit {
      this.telg = vendedor.telefono_garante;
   }
 
+  eliminarVendedor(id:number){
+
+    if(confirm('¿Esta seguro que desea eliminar?')){
+
+      this.vendedoresServ.deleteVendedor(id).subscribe(
+        respuesta =>{
+          console.log(respuesta);
+          this.obtenerVendedores();
+  
+        },
+        error => console.log(error)
+        
+      )
+    }
+
+
+    
+  }
+
 }
