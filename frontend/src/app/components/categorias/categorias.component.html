@@ -1,1 +1,82 @@
-<p>categorias works!</p>
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Operaciones</th>
+
+                </tr>
+            </thead> 
+
+            <tbody>
+                <tr *ngFor = "let categoria of listCategoria">
+                    <td>{{categoria.id_categoria}}</td>
+                    <td>{{categoria.descripcion}}</td>
+                    
+
+                    <td>
+                        <div *ngIf="categoria.estado == 0; else loggedOut">
+                            <span class="badge badge-danger">Inactivo</span>
+                          </div>
+                          
+                          <ng-template #loggedOut>
+                            <span class="badge badge-success">Activo</span>
+                          </ng-template>
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm" >
+                            <!-- <button class="btn btn-danger" (click)="eliminarCategoria(categoria.id_categoria)"  ><i class="fas fa-trash"></i></button> eliminar -->
+                           <!-- <button  class="btn btn-primary" (click)="editarCategoria(categoria)"> <i class="fas fa-edit"></i> </button>modificar -->
+                           
+                       </div>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de categorias</div>
+            <div class="card-body">
+
+
+                <form [formGroup]="formCategoria" (ngSubmit)= "guardarCategoria()">
+                    <input formControlName='id_categoria' type="text" readonly>
+                    <div class="form-group">
+                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select name="" id="" formControlName="estado" class="form-control" placeholder="Ingrese el estado">
+                            <option value="-1" disabled selected>Seleccione un estado</option>
+                            <option value="0" active selected>Inactivo</option>
+                            <option value="1" active selected>Activo</option>
+                        </select>
+                    </div>
+                    
+                    
+
+                    
+                    
+                    <button class="btn btn-success btn-sm">Guardar una categoria</button>
+                    <!-- <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformCategoria()"><i class="fas fa-redo-alt"></i></button> -->
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
