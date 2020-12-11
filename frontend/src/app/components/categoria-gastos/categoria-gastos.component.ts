@@ -78,8 +78,32 @@ export class CategoriaGastosComponent implements OnInit {
       
        }
 
+       eliminarCategoria_gasto(id:number){
+
+        if(confirm('¿Esta seguro que desea eliminar?')){
+    
+          this.categoria_gastoServ.deleteCategoria_gasto(id).subscribe(
+            respuesta =>{
+              console.log(respuesta);
+              this.obtenerCategoria_gasto();
+      
+            },
+            error => console.log(error)
+            
+          )
+        }
+    
+    
+        
+      }
+
     
 
+
+
+       resetearformCategoria_gasto(){
+        this.formCategoria_gasto.reset();
+      }
 
 
 }

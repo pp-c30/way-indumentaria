@@ -19,7 +19,7 @@
                     <td>{{categoria_gasto.descripcion}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" >
-                            <!-- <button class="btn btn-danger" (click)="eliminarProvincia(provincia.id_provincia)"  ><i class="fas fa-trash"></i></button>eliminar -->
+                            <button class="btn btn-danger" (click)="eliminarCategoria_gasto(categoria_gasto.id_categoria_gasto)"  ><i class="fas fa-trash"></i></button> <!--eliminar -->
                            <button  class="btn btn-primary" (click)="editarCategoria_gasto(categoria_gasto)"> <i class="fas fa-edit"></i> </button><!-- modificar -->
                            
                        </div>
@@ -49,8 +49,8 @@
 
                     
                     
-                    <button class="btn btn-success">Guardar la categoria de gasto</button>
-                    <!-- <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformProvincia()"><i class="fas fa-redo-alt"></i></button> -->
+                    <button class="btn btn-success btn-sm">Guardar la categoria de gasto</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformCategoria_gasto()"><i class="fas fa-redo-alt"></i></button>
                 </form>
 
 

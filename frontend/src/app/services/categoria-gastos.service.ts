@@ -31,5 +31,10 @@ export class CategoriaGastosService {
     
        }
 
+       deleteCategoria_gasto(id:number){
+
+        return this.http.delete('http://localhost:3000/categoria_gasto/' +id);
+       }
+
  
 }
