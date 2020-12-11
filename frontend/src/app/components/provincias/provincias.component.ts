@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProvinciasService } from "../../services/provincias.service";
 
 import { FormBuilder , FormGroup } from "@angular/forms";
+import { IProvincia } from 'src/app/models/Provincia';
 
 @Component({
   selector: 'app-provincias',
@@ -21,6 +22,7 @@ export class ProvinciasComponent implements OnInit {
 
     this.formProvincia = this.fb.group({
       
+      id_provincia:[],
       descripcion:['']
 
 
@@ -40,6 +42,23 @@ export class ProvinciasComponent implements OnInit {
   }
 
   guardarProvincia(){
+    if (this.formProvincia.value.id_provincia){
+
+       // si existe el id se actualiza
+       this.provinciasServ.updateProvincia(this.formProvincia.value).subscribe(
+        respuesta => {
+          console.log(respuesta);
+          this.obtenerProvincias();
+          this.formProvincia.reset();
+        },
+        error => console.log(error)
+
+    )
+
+
+    }else{
+
+      // si no existe lo guarda
     // console.log(this.formProvincia.value);
     this.provinciasServ.saveProvincias(this.formProvincia.value).subscribe(
       resultado => {
@@ -49,8 +68,42 @@ export class ProvinciasComponent implements OnInit {
       },
       error => console.log(error)
 
-    )
+    )}
 
   }
 
+  editarProvincia(provincia:IProvincia){
+     this.formProvincia.setValue({
+       id_provincia:provincia.id_provincia,
+       descripcion:provincia.descripcion,
+
+     });
+     
+      }
+
+      eliminarProvincia(id:number){
+
+        if(confirm('¿Esta seguro que desea eliminar?')){
+    
+          this.provinciasServ.deleteProvincia(id).subscribe(
+            respuesta =>{
+              console.log(respuesta);
+              this.obtenerProvincias();
+      
+            },
+            error => console.log(error)
+            
+          )
+        }
+    
+    
+        
+      }
+
+
+
+      resetearformProvincia(){
+        this.formProvincia.reset();
+      }
+    
 }

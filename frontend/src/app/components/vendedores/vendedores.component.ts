@@ -156,4 +156,8 @@ export class VendedoresComponent implements OnInit {
     
   }
 
+  resetearformVendedor(){
+    this.formVendedor.reset();
+  }
+
 }

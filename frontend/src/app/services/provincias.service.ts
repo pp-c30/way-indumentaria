@@ -23,4 +23,18 @@ export class ProvinciasService {
     
 
    }
+
+   updateProvincia(unaProvincia:IProvincia){
+
+    let id:number = unaProvincia.id_provincia;
+
+    return this.http.put('http://localhost:3000/provincias/'+id,unaProvincia);
+
+
+   }
+
+   deleteProvincia(id:number){
+
+    return this.http.delete('http://localhost:3000/provincias/' +id);
+   }
 }
