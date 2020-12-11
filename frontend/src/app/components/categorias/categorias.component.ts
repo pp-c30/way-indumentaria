@@ -71,6 +71,7 @@ export class CategoriasComponent implements OnInit {
     this.formCategoria.setValue({
       id_categoria:categoria.id_categoria,
       descripcion:categoria.descripcion,
+      estado:categoria.estado,
 
     });
     
