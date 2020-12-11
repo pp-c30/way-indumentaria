@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriaGastosService } from "../../services/categoria-gastos.service"
 
 import { FormBuilder , FormGroup } from "@angular/forms";
+import { ICategoria_gasto } from 'src/app/models/categoria_gasto';
 
 @Component({
   selector: 'app-categoria-gastos',
@@ -19,7 +20,7 @@ export class CategoriaGastosComponent implements OnInit {
 
 
     this.formCategoria_gasto = this.fb.group({
-      
+      id_categoria_gasto:[''],
       descripcion:['']
 
 
@@ -42,6 +43,19 @@ export class CategoriaGastosComponent implements OnInit {
 
     guardarCategoria_gasto(){
       // console.log(this.formProvincia.value);
+      if (this.formCategoria_gasto.value.id_categoria_gasto){
+
+           // si existe el id se actualiza
+       this.categoria_gastoServ.updateCategoria_gasto(this.formCategoria_gasto.value).subscribe(
+        respuesta => {
+          console.log(respuesta);
+          this.obtenerCategoria_gasto();
+          this.formCategoria_gasto.reset();
+        },
+        error => console.log(error)
+    )
+      }else{
+      
       this.categoria_gastoServ.saveCategorias_gasto(this.formCategoria_gasto.value).subscribe(
         resultado => {
           console.log(resultado);
@@ -51,8 +65,18 @@ export class CategoriaGastosComponent implements OnInit {
         error => console.log(error)
   
       )
+    }
   
     }
+
+    editarCategoria_gasto(categoria_gasto:ICategoria_gasto){
+      this.formCategoria_gasto.setValue({
+        id_categoria_gasto:categoria_gasto.id_categoria_gasto,
+        descripcion:categoria_gasto.descripcion,
+ 
+      });
+      
+       }
 
     
 

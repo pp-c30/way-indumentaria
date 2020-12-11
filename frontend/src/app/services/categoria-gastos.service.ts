@@ -22,6 +22,14 @@ export class CategoriaGastosService {
         
     
        }
+       updateCategoria_gasto(unaCategoria_gasto:ICategoria_gasto){
+
+        let id:number = unaCategoria_gasto.id_categoria_gasto;
+    
+        return this.http.put('http://localhost:3000/categoria_gasto/'+id,unaCategoria_gasto);
+    
+    
+       }
 
  
 }
