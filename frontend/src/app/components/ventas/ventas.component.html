@@ -16,6 +16,7 @@
                     <th>Descuento_aplicado</th>
                     <th>Planilla</th>
                     <th>Vendedor</th>
+                    <th>Operaciones</th>
                 </tr>
             </thead>
 
@@ -31,6 +32,12 @@
                     <td>{{venta.descuento_aplicado}}</td>
                     <td>{{venta.planilla}}</td>
                     <td>{{venta.vendedor}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-danger">Eliminar</button>
+                            <button class="btn btn-primary">Editar</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
 
