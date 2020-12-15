@@ -62,4 +62,7 @@ export class GastosComponent implements OnInit {
     )
   }
 
+  resetearformGasto(){
+    this.formGasto.reset();
+  }
 }
