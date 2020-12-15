@@ -5,6 +5,7 @@ import { GastosService } from "../../services/gastos.service";
 import { FormBuilder , FormGroup } from "@angular/forms";
 
 import { CategoriaGastosService } from "../../services/categoria-gastos.service";
+import { IGasto } from 'src/app/models/gasto';
 
 @Component({
   selector: 'app-gastos',
@@ -22,6 +23,7 @@ export class GastosComponent implements OnInit {
   constructor(private gastosServ:GastosService, private fb: FormBuilder, private gastosCatServ:CategoriaGastosService) {
     
     this.formGasto = this.fb.group({
+      id_gasto:[null],
       descripcion:[''],
       importe:[''],
       categoria:[0]
@@ -43,16 +45,27 @@ export class GastosComponent implements OnInit {
 
   guardarGasto(){
     // console.log(this.formGasto.value);
-    this.gastosServ.saveGasto(this.formGasto.value).subscribe(
-      resultado => {
-        console.log(resultado);
-        this.obtenerGastos();//se refresca la grilla
-        this.formGasto.reset();
-        this.formGasto.get('categoria').setValue(0);
-      },
-      error => console.log(error)
-
-    )
+    if (this.formGasto.value.id_gasto) {
+      this.gastosServ.updateGasto(this.formGasto.value).subscribe(
+        respuesta => {
+          console.log(respuesta);
+          this.obtenerGastos();//se refresca la grilla
+          this.formGasto.reset();
+        });
+    } 
+    else {
+      this.gastosServ.saveGasto(this.formGasto.value).subscribe(
+        resultado => {
+          console.log(resultado);
+          this.obtenerGastos();//se refresca la grilla
+          this.formGasto.reset();
+          this.formGasto.get('categoria').setValue(0);
+        },
+        error => console.log(error)
+  
+      )
+    }
+    
 
   }
 
@@ -60,6 +73,28 @@ export class GastosComponent implements OnInit {
     this.gastosCatServ.getcatGastos().subscribe(
       resultado => this.listCatGastos = resultado
     )
+  }
+
+  editarGasto(gasto:IGasto){
+    this.formGasto.setValue({
+      id_gasto:gasto.id_gasto,
+      descripcion:gasto.descripcion,
+      importe:gasto.importe,
+      categoria:gasto.categoria,
+    });
+  }
+
+  eliminarGasto(id:number){
+    if (confirm('¿Esta seguro que desea eliminar?')) {
+      this.gastosServ.deleteGasto(id).subscribe(
+        respuesta =>{
+          console.log(respuesta);
+          this.obtenerGastos();
+        },
+        error => console.log(error)
+        
+      )
+    }
   }
 
   resetearformGasto(){
