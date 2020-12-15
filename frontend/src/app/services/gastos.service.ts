@@ -21,4 +21,19 @@ export class GastosService {
    {
      return this.http.post('http://localhost:3000/gastos',unGasto);
    }
+
+   updateGasto(unGasto:IGasto){
+
+    let id:number = unGasto.id_gasto;
+
+    return this.http.put('http://localhost:3000/gastos/'+id,unGasto);
+
+
+   }
+
+
+   deleteGasto(id:number){
+
+    return this.http.delete('http://localhost:3000/gastos/' +id);
+   }
 }
