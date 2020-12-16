@@ -35,7 +35,7 @@ export class venta_impaga_pagaController {
 
         let codigo = req.params.codigo;
 
-        await db.query("delete from venta_impaga_paga where id_venta_impaga_paga = ?",[codigo]);
+        await db.query("delete from venta_impaga_paga where id_impaga_paga = ?",[codigo]);
 
         return res.json('La venta_impaga_paga se elimino exitosamente');
 
@@ -52,7 +52,7 @@ export class venta_impaga_pagaController {
 
         let venta_impaga_paga_actualizado = req.body;
 
-        await db.query("update venta_impaga_paga set ? where id_venta_impaga_paga = ?",[venta_impaga_paga_actualizado,codigo]);
+        await db.query("update venta_impaga_paga set ? where id_impaga_paga = ?",[venta_impaga_paga_actualizado,codigo]);
 
         return res.json("Se actualizo exitosamente");
 

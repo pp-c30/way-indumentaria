@@ -12,6 +12,7 @@
                     <th>Total</th>
                     <th>Debe</th>
                     <th>Estado</th>
+                    <th>Operaciones</th>
 
                 </tr>
             </thead> 
@@ -33,13 +34,13 @@
                           </ng-template>
                     </td>
                     
-                    <!-- <td> -->
-                        <!-- <div class="btn-group btn-group-sm" > -->
-                            <!-- <button class="btn btn-danger" (click)="eliminarCategoria_gasto(categoria_gasto.id_categoria_gasto)"  ><i class="fas fa-trash"></i></button> eliminar -->
-                           <!-- <button  class="btn btn-primary" (click)="editarCategoria_gasto(categoria_gasto)"> <i class="fas fa-edit"></i> </button>modificar -->
+                    <td>
+                        <div class="btn-group btn-group-sm" >
+                             <button class="btn btn-danger" (click)="eliminarVentaImpagaPaga(venta_impaga_paga.id_impaga_paga)"  ><i class="fas fa-trash"></i></button> <!--eliminar -->
+                            <button  class="btn btn-primary" (click)="editarVentaImpagaPaga(venta_impaga_paga)"> <i class="fas fa-edit"></i> </button> <!--modificar -->
                            
-                       <!-- </div> -->
-                    <!-- </td> -->
+                       </div>
+                    </td>
 
                 </tr>
             </tbody>

@@ -31,7 +31,7 @@ class venta_impaga_pagaController {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
             let codigo = req.params.codigo;
-            yield db.query("delete from venta_impaga_paga where id_venta_impaga_paga = ?", [codigo]);
+            yield db.query("delete from venta_impaga_paga where id_impaga_paga = ?", [codigo]);
             return res.json('La venta_impaga_paga se elimino exitosamente');
         });
     }
@@ -40,7 +40,7 @@ class venta_impaga_pagaController {
             const db = yield database_1.conexion();
             let codigo = req.params.codigo;
             let venta_impaga_paga_actualizado = req.body;
-            yield db.query("update venta_impaga_paga set ? where id_venta_impaga_paga = ?", [venta_impaga_paga_actualizado, codigo]);
+            yield db.query("update venta_impaga_paga set ? where id_impaga_paga = ?", [venta_impaga_paga_actualizado, codigo]);
             return res.json("Se actualizo exitosamente");
         });
     }
