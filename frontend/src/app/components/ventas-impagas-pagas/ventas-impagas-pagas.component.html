@@ -1,1 +1,95 @@
-<p>ventas-impagas-pagas works!</p>
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Fecha carga</th>
+                    <th>Vendedor</th>
+                    <th>Total</th>
+                    <th>Debe</th>
+                    <th>Estado</th>
+
+                </tr>
+            </thead> 
+
+            <tbody>
+                <tr *ngFor = "let venta_impaga_paga of listVentaImpagaPaga">
+                    <td>{{venta_impaga_paga.id_impaga_paga}}</td>
+                    <td>{{venta_impaga_paga.fecha_carga}}</td>
+                    <td>{{venta_impaga_paga.vendedor}}</td>
+                    <td>{{venta_impaga_paga.total}}</td>
+                    <td>{{venta_impaga_paga.debe}}</td>
+                    <td>
+                        <div *ngIf="venta_impaga_paga.estado == 0; else loggedOut">
+                            <span class="badge badge-danger">Inactivo</span>
+                          </div>
+                          
+                          <ng-template #loggedOut>
+                            <span class="badge badge-success">Activo</span>
+                          </ng-template>
+                    </td>
+                    
+                    <!-- <td> -->
+                        <!-- <div class="btn-group btn-group-sm" > -->
+                            <!-- <button class="btn btn-danger" (click)="eliminarCategoria_gasto(categoria_gasto.id_categoria_gasto)"  ><i class="fas fa-trash"></i></button> eliminar -->
+                           <!-- <button  class="btn btn-primary" (click)="editarCategoria_gasto(categoria_gasto)"> <i class="fas fa-edit"></i> </button>modificar -->
+                           
+                       <!-- </div> -->
+                    <!-- </td> -->
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de ventas impagas y pagas</div>
+            <div class="card-body">
+
+
+                <form [formGroup]="formVentaImpagaPaga" (ngSubmit)= "guardarVentaImpagaPaga()">
+                    <input formControlName='id_impaga_paga' type="text" readonly>
+                    <div class="form-group">
+                        <input formControlName="fecha_carga" placeholder="Ingrese la fecha de carga" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="vendedor" placeholder="Ingrese el vendedor" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="total" placeholder="Ingrese el total" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="debe" placeholder="Ingrese el monto que se debe" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select name="" id="" formControlName="estado" class="form-control" placeholder="Ingrese el estado">
+                            <option value="-1" disabled selected>Seleccione un estado</option>
+                            <option value="0" active selected>Inactivo</option>
+                            <option value="1" active selected>Activo</option>
+                        </select>
+                    </div>
+
+                    
+                    
+
+                    
+                    
+                    <button class="btn btn-success btn-sm">Guardar venta</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformVentaImpagaPaga()"><i class="fas fa-redo-alt"></i></button>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
