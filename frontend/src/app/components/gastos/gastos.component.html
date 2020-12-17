@@ -1,10 +1,4 @@
 <div class="row">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="resetearformGasto()">
-        Crear gasto
-    </button>
-
-</div>
-<div class="row">
 
     <div class="col-sm-8">
 
@@ -12,6 +6,7 @@
 
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Descripcion</th>
                     <th>Importe</th>
                     <th>Categoria</th>
@@ -21,56 +16,65 @@
 
             <tbody>
                 <tr *ngFor = "let gasto of listGastos">
+                    <td>{{gasto.id_gasto}}</td>
                     <td>{{gasto.descripcion}}</td>
                     <td>{{gasto.importe}}</td>
                     <td>{{gasto.descripcion_categoria}}</td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-danger" (click)="eliminarGasto(gasto.id_gasto)"  ><i class="fas fa-trash"></i></button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarGasto(gasto)"><i class="fas fa-edit"></i></button>
-                        </div>
-                    </td>
+                    
+                        <td>
+                            <div class="btn-group btn-group-sm" >
+                            <button class="btn btn-danger" (click)="eliminarGasto(gasto.id_gasto)"  ><i class="fas fa-trash"></i></button><!--eliminar -->
+                           <button  class="btn btn-primary" (click)="editarGasto(gasto)"> <i class="fas fa-edit"></i> </button><!-- modificar -->
+                           
+                       </div>
+                       </td>
+
+                    
+
                 </tr>
             </tbody>
 
         </table>
 
     </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Gastos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="col-sm-4">
+        
+        <div class="card">
+            <div class="card-header">Formulario de gastos</div>
+            <div class="card-body">
+
+
+                <form [formGroup]="formGasto" (ngSubmit)= "guardarGasto()">
+                    <div class="modal-body">
+
+                            <input formControlName="id_gasto" type="text">
+
+                        <div class="form-group">
+                            <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <input formControlName="importe" placeholder="Ingrese el importe" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <select name="" id="" formControlName="categoria" class="form-control">
+                                <option value="0" disabled selected>Seleccione una categoria</option>
+                                <option  *ngFor="let fila of listCatGastos" [value]="fila.id_categoria_gasto">
+                                    {{fila.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-sm">Guardar un gasto</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformGasto()"><i class="fas fa-redo-alt"></i></button>
+                
+                </form>
             </div>
-            <form [formGroup]="formGasto" (ngSubmit)= "guardarGasto()">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <input formControlName="importe" placeholder="Ingrese el importe" type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <select name="" id="" formControlName="categoria" class="form-control">
-                            <option value="0" disabled selected>Seleccione una categoria</option>
-                            <option  *ngFor="let fila of listCatGastos" [value]="fila.id_categoria_gasto">
-                                {{fila.descripcion}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button class="btn btn-success">Guardar gasto</button>
-                </div>
-            </form>
         </div>
+
     </div>
+
 </div>

@@ -43,17 +43,23 @@ export class GastosComponent implements OnInit {
     )
   }
 
-  guardarGasto(){
-    // console.log(this.formGasto.value);
-    if (this.formGasto.value.id_gasto) {
+  guardarGasto()
+  {
+    
+    if(this.formGasto.value.id_gasto)
+    {
       this.gastosServ.updateGasto(this.formGasto.value).subscribe(
         respuesta => {
           console.log(respuesta);
-          this.obtenerGastos();//se refresca la grilla
+          this.obtenerGastos();
           this.formGasto.reset();
-        });
-    } 
-    else {
+        },
+        error => console.log(error)
+      )
+    }
+
+    else
+    {
       this.gastosServ.saveGasto(this.formGasto.value).subscribe(
         resultado => {
           console.log(resultado);
@@ -65,7 +71,6 @@ export class GastosComponent implements OnInit {
   
       )
     }
-    
 
   }
 
@@ -80,7 +85,7 @@ export class GastosComponent implements OnInit {
       id_gasto:gasto.id_gasto,
       descripcion:gasto.descripcion,
       importe:gasto.importe,
-      categoria:gasto.categoria,
+      categoria:gasto.descripcion_categoria,
     });
   }
 
