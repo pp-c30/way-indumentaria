@@ -6,6 +6,7 @@
 
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Descripcion</th>
                     <th>Provincia</th>
                     <th>Operaciones</th>
@@ -14,12 +15,13 @@
 
             <tbody>
                 <tr *ngFor = "let localidad of listLocalidades">
+                    <td>{{localidad.id_localidad}}</td>
                     <td>{{localidad.descripcion}}</td>
                     <td>{{localidad.descripcion_provincia}}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-danger">Eliminar</button>
-                            <button class="btn btn-primary">Editar</button>
+                            <button  class="btn btn-danger" (click)="eliminarLocalidad(localidad.id_localidad)"> <i class="fas fa-trash"></i> </button>
+                            <button  class="btn btn-primary" (click)="editarLocalidad(localidad)"> <i class="fas fa-edit"></i> </button>
                         </div>
                     </td>
                 </tr>
@@ -35,6 +37,9 @@
             <div class="card-header">Formulario de localidades</div>
             <div class="card-body">
                 <form [formGroup]="formLocalidad" (ngSubmit)= "guardarLocalidad()">
+
+                    <input formControlName="id_localidad" type="text">
+
                     <div class="form-group">
                         <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
                     </div>
@@ -48,7 +53,8 @@
                         </select>
                     </div>
                     
-                    <button class="btn btn-success">Guardar una localidad</button>
+                    <button class="btn btn-success btn-sm">Guardar una localidad</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" (click)="resetearformLocalidad()"><i class="fas fa-redo-alt"></i></button>
                 </form>
             </div>
         </div>

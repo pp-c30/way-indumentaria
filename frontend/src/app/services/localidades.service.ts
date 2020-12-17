@@ -21,4 +21,16 @@ export class LocalidadesService {
    {
       return this.http.post('http://localhost:3000/localidades',unaLocalidad);
    }
+
+   updateLocalidad(unaLocalidad:ILocalidad)
+   {
+      let id:number = unaLocalidad.id_localidad;
+
+      return this.http.put('http://localhost:3000/localidades/'+id,unaLocalidad);
+   }
+
+   deleteLocalidad(id:number)
+   {
+      return this.http.delete('http://localhost:3000/localidades/'+id);
+   }
 }
