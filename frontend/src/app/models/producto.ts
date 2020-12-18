@@ -11,4 +11,5 @@ export interface IProducto
     descuento:number;
     categoria_sexo:number;
     fecha_carga:Date;
+    descripcion_categoria:string;
 }
