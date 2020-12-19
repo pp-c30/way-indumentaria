@@ -8,15 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutenticacionController = void 0;
 const database_1 = require("../routes/database");
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class AutenticacionController {
     registrar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const salt = yield bcryptjs_1.default.genSalt(10);
+            const password_cifrada = yield bcryptjs_1.default.hash(req.body.password, salt);
             const unUsuario = {
                 username: req.body.username,
-                password: req.body.password,
+                password: password_cifrada,
                 email: req.body.email
             };
             const db = yield database_1.conexion();
