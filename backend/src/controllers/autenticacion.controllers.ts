@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import { conexion } from "../routes/database";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export class AutenticacionController 
 {
@@ -19,9 +20,11 @@ export class AutenticacionController
 
         const db = await conexion();
         
-        await db.query('insert into usuario set ?',[unUsuario]);
+        const resultado = await db.query('insert into usuario set ?',[unUsuario]);
 
-        res.json('Probando si se guarda el usuario');
+        const token:string = jwt.sign({_id:resultado.insertId},process.env.TOKEN || '1234');
+
+        res.json(token);
     }
 
     async ingresar(req:Request, res:Response)

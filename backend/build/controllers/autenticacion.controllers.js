@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutenticacionController = void 0;
 const database_1 = require("../routes/database");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class AutenticacionController {
     registrar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -26,8 +27,9 @@ class AutenticacionController {
                 email: req.body.email
             };
             const db = yield database_1.conexion();
-            yield db.query('insert into usuario set ?', [unUsuario]);
-            res.json('Probando si se guarda el usuario');
+            const resultado = yield db.query('insert into usuario set ?', [unUsuario]);
+            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN || '1234');
+            res.json(token);
         });
     }
     ingresar(req, res) {
