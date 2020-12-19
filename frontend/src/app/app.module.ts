@@ -18,6 +18,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { VentasImpagasPagasComponent } from './components/ventas-impagas-pagas/ventas-impagas-pagas.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
