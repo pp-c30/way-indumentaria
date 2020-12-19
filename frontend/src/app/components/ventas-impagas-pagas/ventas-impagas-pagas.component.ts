@@ -4,6 +4,7 @@ import { VentasImpagasPagasService } from "../../services/ventas-impagas-pagas.s
 import { FormBuilder , FormGroup } from "@angular/forms";
 import { IVentaImpagaPaga } from "src/app/models/venta_impaga_paga";
 
+
 @Component({
   selector: 'app-ventas-impagas-pagas',
   templateUrl: './ventas-impagas-pagas.component.html',

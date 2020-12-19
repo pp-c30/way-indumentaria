@@ -15,7 +15,7 @@ class venta_impaga_pagaController {
     listaVenta_impaga_paga(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let venta_impaga_paga = yield db.query('select * from venta_impaga_paga');
+            let venta_impaga_paga = yield db.query('select *, DATE_FORMAT(fecha_carga,"%d/%m/%Y") as fecha_carga from venta_impaga_paga');
             return res.json(venta_impaga_paga);
         });
     }

@@ -1,7 +1,7 @@
 export interface IVentaImpagaPaga
 {
     id_impaga_paga?:number;
-    fecha_carga:Date;
+    fecha_carga:any;
     vendedor:number;
     total:number;
     debe:number;

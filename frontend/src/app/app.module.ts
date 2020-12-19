@@ -12,7 +12,7 @@ import { CategoriaGastosComponent } from './components/categoria-gastos/categori
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { MenupComponent } from './components/menup/menup.component';
 import { VendedoresComponent } from './components/vendedores/vendedores.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductosComponent } from './components/productos/productos.component';
 import { VentasImpagasPagasComponent } from './components/ventas-impagas-pagas/ventas-impagas-pagas.component';
@@ -38,7 +38,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
