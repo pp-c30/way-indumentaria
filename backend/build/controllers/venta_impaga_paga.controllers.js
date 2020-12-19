@@ -15,16 +15,30 @@ class venta_impaga_pagaController {
     listaVenta_impaga_paga(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let venta_impaga_paga = yield db.query('select *, DATE_FORMAT(fecha_carga,"%d/%m/%Y") as fecha_carga from venta_impaga_paga');
+            let venta_impaga_paga = yield db.query('select *, DATE_FORMAT(fecha_carga,"%d/%m/%Y") as fecha_carga, DATE_FORMAT(fecha_carga, "%d") as day, DATE_FORMAT(fecha_carga, "%m") as month, DATE_FORMAT(fecha_carga, "%Y") as year from venta_impaga_paga');
             return res.json(venta_impaga_paga);
         });
     }
     guardarVenta_impaga_paga(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let venta_impaga_paga = req.body;
-            yield db.query('insert into venta_impaga_paga set ?', [venta_impaga_paga]);
-            return res.json('La venta_impaga_paga fue guardada exitosamente');
+            try {
+                const db = yield database_1.conexion();
+                //se guarda datos en la base
+                console.log(req.body.fecha_carga);
+                const guardarVenta_impaga_paga = {
+                    fecha_carga: String(req.body.fecha_carga),
+                    vendedor: Number(req.body.vendedor),
+                    total: Number(req.body.total),
+                    debe: Number(req.body.debe),
+                    estado: Number(req.body.estado),
+                };
+                yield db.query('insert into venta_impaga_paga set ?', [guardarVenta_impaga_paga]);
+                res.json('La venta_impaga_paga fue guardada exitosamente');
+            }
+            catch (error) {
+                res.json('Error al guardar un artículo');
+                console.log(error);
+            }
         });
     }
     eliminarVenta_impaga_paga(req, res) {

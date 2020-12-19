@@ -76,7 +76,7 @@ export class VentasImpagasPagasComponent implements OnInit {
 editarVentaImpagaPaga(venta_impaga_paga:IVentaImpagaPaga){
   this.formVentaImpagaPaga.setValue({
     id_impaga_paga:venta_impaga_paga.id_impaga_paga,
-    fecha_carga:venta_impaga_paga.fecha_carga,
+    fecha_carga:{year:Number(venta_impaga_paga.year),month:Number(venta_impaga_paga.month),day:Number(venta_impaga_paga.day)},
     vendedor:venta_impaga_paga.vendedor,
     total:venta_impaga_paga.total,
     debe:venta_impaga_paga.debe,
