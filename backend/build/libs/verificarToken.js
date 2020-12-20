@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validadToken = void 0;
+exports.validarToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-function validadToken(req, res, next) {
+function validarToken(req, res, next) {
     const token = req.header('auth-token');
     if (!token) {
         res.json('Acceso denegado!');
@@ -14,4 +14,4 @@ function validadToken(req, res, next) {
     console.log(datosToken);
     next();
 }
-exports.validadToken = validadToken;
+exports.validarToken = validarToken;

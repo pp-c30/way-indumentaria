@@ -4,6 +4,8 @@ import { Router } from "express";
 //Importamos el metodo "consolassController" desde el archivo "consolas.controllers"
 import { gastoController } from "../controllers/gasto.controllers";
 
+import { validarToken } from "../libs/verificarToken";
+
 //Instancia que permite tener todas las funciones de la clase "consolasController"
 let GastoController = new gastoController();
 
@@ -11,7 +13,7 @@ let GastoController = new gastoController();
 const enrutadorGasto = Router();
 
 //Creamos una ruta que realiza una peticion que listara las consolas
-enrutadorGasto.route('/gastos').get(GastoController.listaGastos);
+enrutadorGasto.route('/gastos').get(validarToken,GastoController.listaGastos);
 
 //Ruta que permite guardar datos en la base
 enrutadorGasto.route('/gastos').post(GastoController.guardarGasto);
