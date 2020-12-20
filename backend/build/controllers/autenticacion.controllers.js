@@ -16,6 +16,7 @@ exports.AutenticacionController = void 0;
 const database_1 = require("../routes/database");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcryptjs_2 = __importDefault(require("bcryptjs"));
 class AutenticacionController {
     registrar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,6 +35,23 @@ class AutenticacionController {
     }
     ingresar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const db = yield database_1.conexion();
+            const usuario = yield db.query('select * from usuario where username = ?', [req.body.username]);
+            if (!usuario[0]) {
+                res.json('usuario o contraseña incorrecta');
+            }
+            else {
+                const correctPassword = yield bcryptjs_2.default.compare(req.body.password, usuario[0].password);
+                if (!correctPassword) {
+                    res.json('Contraseña incorrecta');
+                }
+                else {
+                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN || '1234', {
+                        expiresIn: 60 * 60 * 24
+                    });
+                    res.header('auth-token', token).json(usuario[0]);
+                }
+            }
         });
     }
 }
