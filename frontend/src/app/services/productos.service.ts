@@ -18,13 +18,14 @@ export class ProductosService {
 
   saveProducto(unProducto:IProducto)
   {
+    unProducto.fecha_carga=unProducto.fecha_carga.year+'-'+unProducto.fecha_carga.month+'-'+unProducto.fecha_carga.day;
     return this.http.post('http://localhost:3000/producto',unProducto);
   }
 
   updateProducto(unProducto:IProducto)
   {
     let id:number = unProducto.id_producto;
-
+    unProducto.fecha_carga=unProducto.fecha_carga.year+'-'+unProducto.fecha_carga.month+'-'+unProducto.fecha_carga.day;
     return this.http.put('http://localhost:3000/producto/'+id,unProducto);
   }
 

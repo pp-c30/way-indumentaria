@@ -10,6 +10,10 @@ export interface IProducto
     estado:number;
     descuento:number;
     categoria_sexo:number;
-    fecha_carga:Date;
+    fecha_carga:any;
     descripcion_categoria:string;
+    fecha_carga_formateada:any;
+    year?:number;
+    month?:number;
+    day?:number;
 }

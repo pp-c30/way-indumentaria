@@ -15,7 +15,7 @@ class ventaController {
     listaVentas(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let ventas = yield db.query('select v.id_venta, p.descripcion as producto_descripcion, v.cantidad, v.importe, v.fecha_venta, v.importe_unitario, v.estado, v.forma_pago, v.descuento_aplicado, vi.vendedor as vendedor_venta, vr.nombre from venta v, producto p, venta_impaga_paga vi, vendedor vr where v.producto = p.id_producto and v.planilla = vi.id_impaga_paga and v.vendedor = vr.id_vendedor');
+            let ventas = yield db.query('select DATE_FORMAT(v.fecha_venta,"%d/%m/%Y") as fecha_venta, DATE_FORMAT(v.fecha_venta,"%d/%m/%Y") as fecha_venta_formateada, DATE_FORMAT(v.fecha_venta, "%d") as day, DATE_FORMAT(v.fecha_venta, "%m") as month, DATE_FORMAT(v.fecha_venta, "%Y") as year, v.id_venta, p.descripcion as producto_descripcion, p.id_producto as producto,v.planilla as planilla, v.cantidad, v.importe, v.fecha_venta, v.importe_unitario, v.estado, v.forma_pago, v.descuento_aplicado, vi.vendedor as vendedor_venta, vr.nombre from venta v, producto p, venta_impaga_paga vi, vendedor vr where v.producto = p.id_producto and v.planilla = vi.id_impaga_paga and v.vendedor = vr.id_vendedor');
             return res.json(ventas);
         });
     }

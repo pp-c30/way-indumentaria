@@ -14,9 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutenticacionController = void 0;
 const database_1 = require("../routes/database");
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const bcryptjs_2 = __importDefault(require("bcryptjs"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class AutenticacionController {
     registrar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41,7 +40,7 @@ class AutenticacionController {
                 res.json('usuario o contraseña incorrecta');
             }
             else {
-                const correctPassword = yield bcryptjs_2.default.compare(req.body.password, usuario[0].password);
+                const correctPassword = yield bcryptjs_1.default.compare(req.body.password, usuario[0].password);
                 if (!correctPassword) {
                     res.json('Contraseña incorrecta');
                 }

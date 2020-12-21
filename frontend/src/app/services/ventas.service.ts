@@ -19,16 +19,23 @@ export class VentasService {
 
   saveVenta(unaVenta:IVenta)
   {
+    unaVenta.fecha_venta=unaVenta.fecha_venta.year+'-'+unaVenta.fecha_venta.month+'-'+unaVenta.fecha_venta.day;
     return this.http.post('http://localhost:3000/ventas',unaVenta);
   }
 
   updateVenta(unaVenta:IVenta){
 
     let id:number = unaVenta.id_venta;
-
+    unaVenta.fecha_venta=unaVenta.fecha_venta.year+'-'+unaVenta.fecha_venta.month+'-'+unaVenta.fecha_venta.day;
     return this.http.put('http://localhost:3000/ventas/'+id,unaVenta);
 
 
    }
+
+   deleteVenta(id:number){
+
+    return this.http.delete('http://localhost:3000/ventas/' +id);
+   }
+
 
 }

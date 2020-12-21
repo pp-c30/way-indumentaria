@@ -75,7 +75,7 @@ export class LocalidadesComponent implements OnInit {
     this.formLocalidad.setValue({
       id_localidad:localidad.id_localidad,
       descripcion:localidad.descripcion,
-      provincia:localidad.descripcion_provincia
+      provincia:localidad.provincia
     });
   }
 

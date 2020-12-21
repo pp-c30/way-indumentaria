@@ -10,6 +10,10 @@ import { VentasImpagasPagasService } from "../../services/ventas-impagas-pagas.s
 
 import { ProductosService } from "../../services/productos.service";
 
+import { IVenta } from "../../models/venta";
+
+
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -64,6 +68,20 @@ export class VentasComponent implements OnInit {
 
   guardarVenta()
   {
+
+    if(this.formVenta.value.id_venta){
+    
+           // si existe el id se actualiza
+     this.ventasServ.updateVenta(this.formVenta.value).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.obtenerVentas();
+        this.formVenta.reset();
+      },
+      error => console.log(error)
+  )
+
+    }else{
     this.ventasServ.saveVenta(this.formVenta.value).subscribe(
       resultado => {
         console.log(resultado);
@@ -75,7 +93,7 @@ export class VentasComponent implements OnInit {
       },
       error => console.log(error)
     )
-  }
+  }}
 
   obtenerProductos()
   {
@@ -85,7 +103,7 @@ export class VentasComponent implements OnInit {
     )
   }
 
-  obtenerVentasImpPag()
+  obtenerVentasImpPag() 
   {
     this.ventasImpPagServ.getVentaImpagaPaga().subscribe(
       resultado => this.listImpPagVentas = resultado,
@@ -106,4 +124,41 @@ export class VentasComponent implements OnInit {
     this.formVenta.reset();
   }
 
+  eliminarVenta(id:number){
+
+    if(confirm('¿Esta seguro que desea eliminar?')){
+
+      this.ventasServ.deleteVenta(id).subscribe(
+        respuesta =>{
+          console.log(respuesta);
+          this.obtenerVentas();
+  
+        },
+        error => console.log(error)
+        
+      )
+    }
+
+
+}
+editarVenta(venta:IVenta){
+  this.formVenta.setValue({
+    id_venta:venta.id_venta,
+    fecha_venta:{year:Number(venta.year),month:Number(venta.month),day:Number(venta.day)},
+    producto:venta.producto,
+    importe:venta.importe,
+    cantidad:venta.cantidad,
+    importe_unitario:venta.importe_unitario,
+    estado:venta.estado,
+    forma_pago:venta.forma_pago,
+    descuento_aplicado:venta.descuento_aplicado,
+    planilla:venta.planilla,
+    vendedor:venta.vendedor_venta,
+
+
+  });
+  
+   }
+
+  
 }

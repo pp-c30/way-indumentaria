@@ -9,6 +9,9 @@ import { ProvinciasComponent } from "./components/provincias/provincias.componen
 import { VentasComponent } from "./components/ventas/ventas.component";
 import { VendedoresComponent } from "./components/vendedores/vendedores.component";
 import { VentasImpagasPagasComponent } from "./components/ventas-impagas-pagas/ventas-impagas-pagas.component";
+import { RegistroComponent } from "./components/registro/registro.component";
+import { IngresoComponent } from "./components/ingreso/ingreso.component";
+
 
 const routes: Routes = [
   {
@@ -38,6 +41,16 @@ const routes: Routes = [
   {
     path:"ventasImpagasPagas",component:VentasImpagasPagasComponent
   },
+  {
+    path:"registro",component:RegistroComponent
+  },
+  {
+    path:"ingreso",component:IngresoComponent
+  },
+  {
+    path:'', redirectTo:'/ingreso', pathMatch:'full'
+  },
+  
 ];
 
 @NgModule({

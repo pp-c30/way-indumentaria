@@ -92,11 +92,11 @@ export class ProductosComponent implements OnInit {
       precio_compra:producto.precio_compra,
       precio_way:producto.precio_way,
       precio_final:producto.precio_final,
-      categoria:producto.descripcion_categoria,
+      categoria:producto.categoria,
       estado:producto.estado,
       descuento:producto.descuento,
       categoria_sexo:producto.categoria_sexo,
-      fecha_carga:producto.fecha_carga,
+      fecha_carga:{year:Number(producto.year),month:Number(producto.month),day:Number(producto.day)},
     });
   }
 

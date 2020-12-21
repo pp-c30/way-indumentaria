@@ -9,5 +9,5 @@ export interface IVentaImpagaPaga
     total:number;
     debe:number;
     estado:number;
-    
+    vendedor_descripcion:string;
 }

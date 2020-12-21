@@ -4,7 +4,8 @@ export interface IVenta
     producto:number;
     cantidad:number;
     importe:number;
-    fecha_venta:Date;
+    fecha_venta:any;
+    fecha_venta_formateada:any;
     importe_unitario:string;
     estado:number;
     forma_pago:number;
@@ -14,4 +15,7 @@ export interface IVenta
     producto_descripcion:string;
     vendedor_venta:number;
     nombre:string;
+    month?:number;
+    year?:number;
+    day?:number;
 }

@@ -17,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductosComponent } from './components/productos/productos.component';
 import { VentasImpagasPagasComponent } from './components/ventas-impagas-pagas/ventas-impagas-pagas.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { IngresoComponent } from './components/ingreso/ingreso.component';
+// import { AuthGuard } from "./auth.guard";
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     VendedoresComponent,
     ProductosComponent,
     VentasImpagasPagasComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    RegistroComponent,
+    IngresoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,9 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

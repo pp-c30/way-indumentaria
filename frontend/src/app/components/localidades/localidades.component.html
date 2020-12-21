@@ -38,7 +38,7 @@
             <div class="card-body">
                 <form [formGroup]="formLocalidad" (ngSubmit)= "guardarLocalidad()">
 
-                    <input formControlName="id_localidad" type="text">
+                    <input formControlName="id_localidad" type="text" readonly>
 
                     <div class="form-group">
                         <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">

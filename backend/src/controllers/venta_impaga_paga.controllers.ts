@@ -8,7 +8,7 @@ export class venta_impaga_pagaController {
 
        const db = await conexion();
 
-        let venta_impaga_paga = await db.query('select *, DATE_FORMAT(fecha_carga,"%d/%m/%Y") as fecha_carga, DATE_FORMAT(fecha_carga, "%d") as day, DATE_FORMAT(fecha_carga, "%m") as month, DATE_FORMAT(fecha_carga, "%Y") as year from venta_impaga_paga');
+        let venta_impaga_paga = await db.query('select *, concat(v.apellido,", ", v.nombre) as vendedor_descripcion , DATE_FORMAT(ven.fecha_carga,"%d/%m/%Y") as fecha_carga, DATE_FORMAT(ven.fecha_carga, "%d") as day, DATE_FORMAT(ven.fecha_carga, "%m") as month, DATE_FORMAT(ven.fecha_carga, "%Y") as year from vendedor v, venta_impaga_paga ven where ven.vendedor=v.id_vendedor');
 
         return res.json(venta_impaga_paga);
 

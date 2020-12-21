@@ -14,7 +14,8 @@ export class VentasImpagasPagasService {
   }
 
   saveVentaImpagaPaga(unaVentaImpagaPaga:IVentaImpagaPaga){
-
+    
+    unaVentaImpagaPaga.fecha_carga=unaVentaImpagaPaga.fecha_carga.year+'-'+unaVentaImpagaPaga.fecha_carga.month+'-'+unaVentaImpagaPaga.fecha_carga.day;
     return this.http.post('http://localhost:3000/venta_impaga_paga', unaVentaImpagaPaga);
     
 
@@ -22,6 +23,7 @@ export class VentasImpagasPagasService {
    updateVentaImpagaPaga(unaVentaImpagaPaga:IVentaImpagaPaga){
 
     let id:number = unaVentaImpagaPaga.id_impaga_paga;
+    unaVentaImpagaPaga.fecha_carga=unaVentaImpagaPaga.fecha_carga.year+'-'+unaVentaImpagaPaga.fecha_carga.month+'-'+unaVentaImpagaPaga.fecha_carga.day;
 
     return this.http.put('http://localhost:3000/venta_impaga_paga/'+id,unaVentaImpagaPaga);
 

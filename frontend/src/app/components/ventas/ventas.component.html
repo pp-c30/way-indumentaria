@@ -1,7 +1,9 @@
 <div class="row">
+    <div class="col-sm-3">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="resetearformVenta()">
         Crear venta
       </button>
+    </div>
 
 </div>
 <div class="row">
@@ -36,7 +38,7 @@
                     <td>{{venta.producto_descripcion}}</td>
                     <td>{{venta.cantidad}}</td>
                     <td>{{venta.importe}}</td>
-                    <td>{{venta.fecha_venta}}</td>
+                    <td>{{venta.fecha_venta_formateada}}</td>
                     <td>{{venta.importe_unitario}}</td>
                     <td>
                         <div *ngIf="venta.estado == 0; else loggedOut">
@@ -61,8 +63,8 @@
                     <td>{{venta.nombre}}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-danger">Eliminar</button>
-                            <button class="btn btn-primary">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminarVenta(venta.id_venta)" ><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarVenta(venta)"><i class="fas fa-edit"></i> </button>
                         </div>
                     </td>
                 </tr>
@@ -106,7 +108,16 @@
             </div>
             
             <div class="form-group">
-                <input formControlName="fecha_venta" placeholder="Ingrese la fecha de venta" type="text" class="form-control">
+                <div class="input-group">
+                    <input formControlName="fecha_venta" class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-calendar-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM8.5 8.5a.5.5 0 0 0-1 0V10H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V11H10a.5.5 0 0 0 0-1H8.5V8.5z"/>
+                              </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
             
             <div class="form-group">
@@ -134,12 +145,13 @@
             </div>
 
             <div class="form-group">
-                <select name="" id="" formControlName="planilla" class="form-control" placeholder="">
+                <input formControlName='planilla' placeholder="Ingrese una planilla" class="form-control" type="number">
+               <!-- <select name="" id="" formControlName="planilla" class="form-control" placeholder="">
                     <option value="0" disabled selected>Seleccione una planilla</option>
                     <option  *ngFor="let fila of listImpPagVentas" [value]="fila.id_venta_impaga_paga">
                         {{fila.vendedor_venta}}
                     </option>
-                </select>
+                 </select> -->
             </div>
             
             <div class="form-group">
