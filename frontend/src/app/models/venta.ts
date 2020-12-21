@@ -11,4 +11,7 @@ export interface IVenta
     descuento_aplicado:number;
     planilla:number;
     vendedor:number;
+    producto_descripcion:string;
+    vendedor_venta:number;
+    nombre:string;
 }

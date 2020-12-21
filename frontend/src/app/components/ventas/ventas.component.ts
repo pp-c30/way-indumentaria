@@ -23,13 +23,16 @@ export class VentasComponent implements OnInit {
 
   listImpPagVentas = [];
 
+  listVendVentas = [];
+
   formVenta: FormGroup;
 
-  constructor(private ventasServ:VentasService, private fb: FormBuilder, private ventasProServ:ProductosService, private ventasImpPagServ:VentasImpagasPagasService, private ventasVend:VendedoresService) {
+  constructor(private ventasServ:VentasService, private fb: FormBuilder, private ventasProServ:ProductosService, private ventasImpPagServ:VentasImpagasPagasService, private ventasVendServ:VendedoresService) {
 
     this.formVenta = this.fb.group({
       
-      producto:[''],
+      id_venta:[null],
+      producto:[0],
       cantidad:[''],
       importe:[''],
       fecha_venta:[''],
@@ -37,15 +40,18 @@ export class VentasComponent implements OnInit {
       estado:[''],
       forma_pago:[''],
       descuento_aplicado:[''],
-      planilla:[''],
-      vendedor:['']
+      planilla:[0],
+      vendedor:[0]
 
     });
 
    }
 
   ngOnInit(): void {
-    this.obtenerVentas
+    this.obtenerVentas();
+    this.obtenerProductos();
+    this.obtenerVentasImpPag();
+    this.obtenerVendedores();
   }
 
   obtenerVentas()
@@ -62,8 +68,42 @@ export class VentasComponent implements OnInit {
       resultado => {
         console.log(resultado);
         this.obtenerVentas();
-      }
-    );
+        this.formVenta.reset();
+        this.formVenta.get('producto').setValue(0);
+        this.formVenta.get('planilla').setValue(0);
+        this.formVenta.get('vendedor').setValue(0);
+      },
+      error => console.log(error)
+    )
+  }
+
+  obtenerProductos()
+  {
+    this.ventasProServ.getProductos().subscribe(
+      resultado => this.listProVentas = resultado,
+      error => console.log(error),
+    )
+  }
+
+  obtenerVentasImpPag()
+  {
+    this.ventasImpPagServ.getVentaImpagaPaga().subscribe(
+      resultado => this.listImpPagVentas = resultado,
+      error => console.log(error),
+    )
+  }
+
+  obtenerVendedores()
+  {
+    this.ventasVendServ.getVendedores().subscribe(
+      resultado => this.listVendVentas = resultado,
+      error => console.log(error)
+    )
+  }
+
+  resetearformVenta()
+  {
+    this.formVenta.reset();
   }
 
 }

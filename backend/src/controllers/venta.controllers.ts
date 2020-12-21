@@ -8,7 +8,7 @@ export class ventaController{
 
         const db = await conexion();
 
-        let ventas = await db.query('select * from venta');
+        let ventas = await db.query('select v.id_venta, p.descripcion as producto_descripcion, v.cantidad, v.importe, v.fecha_venta, v.importe_unitario, v.estado, v.forma_pago, v.descuento_aplicado, vi.vendedor as vendedor_venta, vr.nombre from venta v, producto p, venta_impaga_paga vi, vendedor vr where v.producto = p.id_producto and v.planilla = vi.id_impaga_paga and v.vendedor = vr.id_vendedor');
 
         return res.json(ventas);
     }

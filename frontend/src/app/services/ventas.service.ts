@@ -22,4 +22,13 @@ export class VentasService {
     return this.http.post('http://localhost:3000/ventas',unaVenta);
   }
 
+  updateVenta(unaVenta:IVenta){
+
+    let id:number = unaVenta.id_venta;
+
+    return this.http.put('http://localhost:3000/ventas/'+id,unaVenta);
+
+
+   }
+
 }
