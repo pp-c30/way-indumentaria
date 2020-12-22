@@ -18,7 +18,7 @@ export class gastoController {
         const db = await conexion();
 
         //Realizamos la consulta para mostrar los datos de la tabla consolas
-        let gastos = await db.query('select g.id_gasto,g.descripcion,g.importe,cg.descripcion as descripcion_categoria from gasto g, categoria_gasto cg where g.categoria = cg.id_categoria_gasto');
+        let gastos = await db.query('select g.id_gasto,g.descripcion,g.importe,cg.descripcion as descripcion_categoria, cg.id_categoria_gasto as categoria from gasto g, categoria_gasto cg where g.categoria = cg.id_categoria_gasto');
 
         //Retorna una respuesta en formato json de pagos
         return res.json(gastos);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AutenticacionService } from "../../services/autenticacion.service";
 
 @Component({
   selector: 'app-menup',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenupComponent implements OnInit {
 
-  constructor() { }
+  constructor(public autServ:AutenticacionService) {
+
+   }
 
   ngOnInit(): void {
   }
+
 
 }

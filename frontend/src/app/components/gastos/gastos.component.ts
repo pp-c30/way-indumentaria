@@ -85,7 +85,7 @@ export class GastosComponent implements OnInit {
       id_gasto:gasto.id_gasto,
       descripcion:gasto.descripcion,
       importe:gasto.importe,
-      categoria:gasto.descripcion_categoria,
+      categoria:gasto.categoria,
     });
   }
 

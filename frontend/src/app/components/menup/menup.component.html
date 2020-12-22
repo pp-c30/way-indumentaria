@@ -6,7 +6,7 @@
   
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="autServ.verificarUsuarioLogueado()">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" routerLink="/categoriaGastos">Categoria gastos</a>
@@ -30,6 +30,31 @@
           </div>
         </li>
       </ul>
+
+      <ng-container >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+         
+            <a class="nav-link" routerLink="/registro" style="cursor: pointer" *ngIf ="autServ.verificarUsuarioLogueado()" >Registrar usuario</a>
+        </li>
+        <li class="nav-item active" *ngIf ="!autServ.verificarUsuarioLogueado(); else cierresesion">
+         
+          <a class="nav-link"  routerLink="/ingreso" style="cursor: pointer" >login</a>
+      </li>
+      </ul>
+    </ng-container>
+      <ng-template #cierresesion>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+           
+              <a class="nav-link" style="cursor: pointer" (click)=autServ.cerrarSesion()>Cerrar sesion</a>
+          </li>
+          
+        </ul>
+      </ng-template>
+    
+
+
       <ng-content></ng-content>
     </div>
   </nav>

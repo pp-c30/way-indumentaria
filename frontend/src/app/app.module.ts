@@ -7,7 +7,7 @@ import { LocalidadesComponent } from './components/localidades/localidades.compo
 import { GastosComponent } from './components/gastos/gastos.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CategoriaGastosComponent } from './components/categoria-gastos/categoria-gastos.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { MenupComponent } from './components/menup/menup.component';
@@ -19,7 +19,8 @@ import { VentasImpagasPagasComponent } from './components/ventas-impagas-pagas/v
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
-// import { AuthGuard } from "./auth.guard";
+import { AuthGuard } from "./auth.guard";
+import { TokenInterceptorService } from "./services/token-interceptor.service";
 
 
 @NgModule({
@@ -47,7 +48,13 @@ import { IngresoComponent } from './components/ingreso/ingreso.component';
     NgbModule
   ],
   providers: [
-
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true,
+     }
+    
   ],
   bootstrap: [AppComponent]
 })

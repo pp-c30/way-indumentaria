@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { productoController } from "../controllers/producto.controllers";
+import { validarToken } from "../libs/verificarToken";
 
 
 let ProductoController = new productoController();
 
 const enrutadorProducto = Router();
 
-enrutadorProducto.route('/producto').get(ProductoController.listaProducto);
+enrutadorProducto.route('/producto').get(validarToken,ProductoController.listaProducto);
 
 enrutadorProducto.route('/producto').post(ProductoController.guardarProducto);
 

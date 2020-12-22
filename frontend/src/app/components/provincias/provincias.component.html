@@ -42,9 +42,9 @@
             <div class="card-body">
 
 
-                <form [formGroup]="formProvincia" (ngSubmit)= "guardarProvincia()">
+                <form [formGroup]="formProvincia"  (ngSubmit)= "guardarProvincia()">
 
-                    <input formControlName='id_provincia' type="text" readonly>
+                    <input formControlName='id_provincia' class="form-control" type="text" readonly>
                     <div class="form-group">
                         <input formControlName="descripcion" placeholder="Ingrese la descripcion" type="text" class="form-control">
                     </div>

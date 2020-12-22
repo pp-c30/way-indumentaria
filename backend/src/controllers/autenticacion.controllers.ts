@@ -36,7 +36,7 @@ export class AutenticacionController
 
         if (!usuario[0]) 
         {
-            res.json('usuario o contraseña incorrecta');    
+            res.json(1);    
         }
 
         else
@@ -45,7 +45,7 @@ export class AutenticacionController
 
             if (!correctPassword) 
             {
-                res.json('Contraseña incorrecta');    
+                res.json(0);    
             }
             
             else
@@ -54,7 +54,7 @@ export class AutenticacionController
                     expiresIn:60*60*24
                 });
 
-                res.header('auth-token',token).json(usuario[0]);
+                res.json(token);
             }
         }
     }

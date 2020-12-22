@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit {
       respuesta => { 
         localStorage.setItem('token',String(respuesta));
         this.formRegistro.reset();
-        this.route.navigate(['/menup'])
+        this.route.navigate(['/vendedor']);
       }, error => console.log(error)
     )
      

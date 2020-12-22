@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { categoriaController } from "../controllers/categoria.controllers";
+import { validarToken } from "../libs/verificarToken";
 
 
 let CategoriaController = new categoriaController();
 
 const enrutadorCategoria = Router();
 
-enrutadorCategoria.route('/categoria').get(CategoriaController.listaCategoria);
+enrutadorCategoria.route('/categoria').get(validarToken,CategoriaController.listaCategoria);
 
 enrutadorCategoria.route('/categoria').post(CategoriaController.guardarCategoria);
 

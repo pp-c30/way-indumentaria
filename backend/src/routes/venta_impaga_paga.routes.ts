@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { venta_impaga_pagaController } from "../controllers/venta_impaga_paga.controllers";
+import { validarToken } from "../libs/verificarToken";
 
 
 let Venta_impaga_pagaController = new venta_impaga_pagaController();
 
 const enrutadorVenta_impaga_paga = Router();
 
-enrutadorVenta_impaga_paga.route('/venta_impaga_paga').get(Venta_impaga_pagaController.listaVenta_impaga_paga);
+enrutadorVenta_impaga_paga.route('/venta_impaga_paga').get(validarToken,Venta_impaga_pagaController.listaVenta_impaga_paga);
 
 enrutadorVenta_impaga_paga.route('/venta_impaga_paga').post(Venta_impaga_pagaController.guardarVenta_impaga_paga);
 

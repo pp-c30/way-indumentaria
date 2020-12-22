@@ -11,6 +11,7 @@ import { VendedoresComponent } from "./components/vendedores/vendedores.componen
 import { VentasImpagasPagasComponent } from "./components/ventas-impagas-pagas/ventas-impagas-pagas.component";
 import { RegistroComponent } from "./components/registro/registro.component";
 import { IngresoComponent } from "./components/ingreso/ingreso.component";
+import { AuthGuard } from "./auth.guard";
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
     path:"categorias",component:CategoriasComponent
   },
   {
-    path:"gastos",component:GastosComponent
+    path:"gastos",component:GastosComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:"localidades",component:LocalidadesComponent
