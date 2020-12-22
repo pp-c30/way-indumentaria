@@ -77,7 +77,7 @@ editarVentaImpagaPaga(venta_impaga_paga:IVentaImpagaPaga){
   this.formVentaImpagaPaga.setValue({
     id_impaga_paga:venta_impaga_paga.id_impaga_paga,
     fecha_carga:{year:Number(venta_impaga_paga.year),month:Number(venta_impaga_paga.month),day:Number(venta_impaga_paga.day)},
-    vendedor:venta_impaga_paga.vendedor,
+    vendedor:venta_impaga_paga.vendedor_descripcion,
     total:venta_impaga_paga.total,
     debe:venta_impaga_paga.debe,
     estado:venta_impaga_paga.estado,
