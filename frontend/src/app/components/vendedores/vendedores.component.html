@@ -1,81 +1,99 @@
+<ol class="breadcrumb" style="background-color:#fbfbfb">
+    <li class="breadcrumb-item"><a routerLink="/ventas">Inicio</a></li>
+    <li class="breadcrumb-item"><a routerLink="#">Vendedores</a></li>
+</ol>
+
 <div class="row">
     <div class="col-sm-3">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="resetearformVendedor()">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal"  (click)="resetearformVendedor()">
         Crear vendedor
       </button>
     </div>
 </div>
+<br>
 <div class="row">
 
-    <div class="col-sm-8">
-
-        <table class="table table-striped" >
-
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>DNI</th>
-                    <th>Domicilio</th>
-                    <th>Email</th>
-                    <th>Localidad</th>
-                    <th>Adjunto</th>
-                    <th>Telefono</th>
-                    
-                    <th>Estado</th>
-                    <th>Operaciones</th>
-                    
-
-
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor = "let vendedor of listVendedores">
-                   
-
-                     <td>{{vendedor.id_vendedor}}</td>  
-                    <td>{{vendedor.nombre}}</td>
-                    <td>{{vendedor.apellido}}</td>
-                    <td>{{vendedor.dni}}</td>
-                    <td>{{vendedor.domicilio}}</td>
-                    <td>{{vendedor.email}}</td>
-                    <td>{{vendedor.descripcion}}</td>
-                    <td>{{vendedor.adjunto}}</td>
-                    <td>{{vendedor.telefono}}</td>
-                    
-                    <td>
-                        <div *ngIf="vendedor.estado == 0; else loggedOut">
-                            <span class="badge badge-danger">Inactivo</span>
-                          </div>
-                          
-                          <ng-template #loggedOut>
-                            <span class="badge badge-success">Activo</span>
-                          </ng-template>
-                    </td>
-                    <td>
-                         <div class="btn-group btn-group-sm" >
-                         <button class="btn btn-danger" (click)="eliminarVendedor(vendedor.id_vendedor)"  ><i class="fas fa-trash"></i></button> <!-- eliminar -->
-                        <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarVendedor(vendedor)"> <i class="fas fa-edit"></i> </button><!-- modificar -->
-                        <button class="btn btn-primary"   data-toggle="modal" data-target="#myModal" (click)="verDatosGarante(vendedor)" ><i class="fas fa-eye"></i></button> <!-- ver mas -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">Grilla vendedores</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input placeholder="Ingrese búsqueda" [(ngModel)]="buscar" type="text" class="form-control">
+                        </div>
                     </div>
-                    </td>
+                </div>
+                <table class="table table-striped" >
 
-                   
-                
-
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Domicilio</th>
+                            <th>Email</th>
+                            <th>Localidad</th>
+                            <th>Adjunto</th>
+                            <th>Telefono</th>
+                            
+                            <th>Estado</th>
+                            <th>Operaciones</th>
+                            
+        
+        
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        <tr *ngFor = "let vendedor of listVendedores | filter:buscar | paginate:{itemsPerPage:10,currentPage:p}">
+                           
+        
+                             <td>{{vendedor.id_vendedor}}</td>  
+                            <td>{{vendedor.nombre}}</td>
+                            <td>{{vendedor.apellido}}</td>
+                            <td>{{vendedor.dni}}</td>
+                            <td>{{vendedor.domicilio}}</td>
+                            <td>{{vendedor.email}}</td>
+                            <td>{{vendedor.descripcion}}</td>
+                            <td>{{vendedor.adjunto}}</td>
+                            <td>{{vendedor.telefono}}</td>
+                            
+                            <td>
+                                <div *ngIf="vendedor.estado == 0; else loggedOut">
+                                    <span class="badge badge-danger">Inactivo</span>
+                                  </div>
+                                  
+                                  <ng-template #loggedOut>
+                                    <span class="badge badge-success">Activo</span>
+                                  </ng-template>
+                            </td>
+                            <td>
+                                 <div class="btn-group btn-group-sm" >
+                                 <button class="btn btn-danger" (click)="eliminarVendedor(vendedor.id_vendedor)"  ><i class="fas fa-trash"></i></button> <!-- eliminar -->
+                                <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editarVendedor(vendedor)"> <i class="fas fa-edit"></i> </button><!-- modificar -->
+                                <button class="btn btn-info"   data-toggle="modal" data-target="#myModal" (click)="verDatosGarante(vendedor)" ><i class="fas fa-eye"></i></button> <!-- ver mas -->
+                            </div>
+                            </td>
+        
+                           
+                        
+        
+        
+                        </tr>
+        
+                    </tbody>
+        
+                </table>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    
-
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,7 +129,7 @@
 
                 <div class="form-group">
                     <select name="" id="" formControlName="localidad" class="form-control" placeholder="">
-                        <option value="0" disabled selected>Seleccione una localidad</option>
+                        <option value="-1" disabled selected>Seleccione una localidad</option>
                         <option  *ngFor="let fila of listVendedoresLoc" [value]="fila.id_localidad">
                             {{fila.descripcion}}
                         </option>
@@ -151,17 +169,10 @@
                         <option value="1" active selected>Activo</option>
                     </select>
                 </div>
-
-
-
-                
-                
-                
-            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button class="btn btn-success">Guardar vendedor</button>
+          <button [class]="class_button_sa">{{text_button}}</button>
         </div>
     </form>
       </div>

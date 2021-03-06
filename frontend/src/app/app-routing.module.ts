@@ -7,6 +7,7 @@ import { LocalidadesComponent } from "./components/localidades/localidades.compo
 import { ProductosComponent } from "./components/productos/productos.component";
 import { ProvinciasComponent } from "./components/provincias/provincias.component";
 import { VentasComponent } from "./components/ventas/ventas.component";
+import { VentaDetalleComponent } from "./components/venta-detalle/venta-detalle.component";
 import { VendedoresComponent } from "./components/vendedores/vendedores.component";
 import { VentasImpagasPagasComponent } from "./components/ventas-impagas-pagas/ventas-impagas-pagas.component";
 import { RegistroComponent } from "./components/registro/registro.component";
@@ -41,7 +42,10 @@ const routes: Routes = [
     path:"ventas",component:VentasComponent
   },
   {
-    path:"ventasImpagasPagas",component:VentasImpagasPagasComponent
+    path:"ventas-seguimiento/:id_vendedor/:nombre_ape",component:VentasImpagasPagasComponent
+  },
+  {
+    path:"ventas-detalle/:id_vpi",component:VentaDetalleComponent
   },
   {
     path:"registro",component:RegistroComponent

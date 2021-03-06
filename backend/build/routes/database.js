@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.conexion = void 0;
 //Importamos el metodo "createPool" que nos permitira conectarnos a la base de datos desde "promise-mysql"
 const promise_mysql_1 = require("promise-mysql");
 //Funcion que se encargara de la conexion a las base de datos
@@ -20,7 +19,7 @@ function conexion() {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'way'
+            database: 'way_indumentaria'
         });
         //Entrega una respuesta
         return connect;

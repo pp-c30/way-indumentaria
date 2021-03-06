@@ -3,8 +3,9 @@ export interface IVenta
     id_venta?:number;
     producto:number;
     cantidad:number;
-    importe:number;
+    importe:string;
     fecha_venta:any;
+    fecha_venta_origin:any;
     fecha_venta_formateada:any;
     importe_unitario:string;
     estado:number;
@@ -13,6 +14,7 @@ export interface IVenta
     planilla:number;
     vendedor:number;
     producto_descripcion:string;
+    codigo_producto:string;
     vendedor_venta:number;
     nombre:string;
     month?:number;

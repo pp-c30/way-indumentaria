@@ -6,11 +6,17 @@ export class provinciaController{
 
     public async listaProvincias(req:Request,res:Response){
 
-        const db = await conexion();
+        try {
+            const db = await conexion();
 
-        let provincias = await db.query('select * from provincia');
+            let provincias = await db.query('select * from provincia');
 
-        return res.json(provincias);
+            res.json(provincias);
+        } catch (error) {
+            res.json(error);
+        }
+
+        
     }
 
     public async guardarProvincias(req:Request,res:Response){
@@ -27,11 +33,10 @@ export class provinciaController{
 
     public async eliminarProvincia(req:Request,res:Response)
     {
-        const conex = await conexion();
-
-        let id_provincia = req.params.codigo;
-
         try {
+            const conex = await conexion();
+
+            let id_provincia = req.params.codigo;
             await conex.query('delete from provincia where id_provincia = ?',[id_provincia]);
             return res.json("Provincia eliminada");
 
@@ -44,29 +49,37 @@ export class provinciaController{
 
     public async actualizarProvincia(req:Request,res:Response)
     {
+        try {
+            const db = await conexion();
 
-        const db = await conexion();
-
-        let codigo = req.params.codigo;
-
-        let provincia_actualizada = req.body;
-
-        await db.query("update provincia set ? where id_provincia = ?",[provincia_actualizada,codigo]);
-
-        return res.json("Se actualizo exitosamente");
-
+            let codigo = req.params.codigo;
+    
+            let provincia_actualizada = req.body;
+    
+            await db.query("update provincia set ? where id_provincia = ?",[provincia_actualizada,codigo]);
+    
+            res.json("Se actualizo exitosamente");
+    
+        } catch (error) {
+            res.json(error);
+        }
+       
     }
 
     public async obtenerUnaProvincia(req:Request,res:Response)
     {
+        try {
+            const db = await conexion();
 
-        const db = await conexion();
+            let codigo = req.params.codigo;
 
-        let codigo = req.params.codigo;
+            let unaProvincia = await db.query("select * from provincia where id_provincia = ?",[codigo]);
 
-        let unaProvincia = await db.query("select * from provincia where id_provincia = ?",[codigo]);
-
-        return res.json(unaProvincia[0]);
+            res.json(unaProvincia[0]);
+        } catch (error) {
+            res.json(error);
+        }
+        
 
     }
 

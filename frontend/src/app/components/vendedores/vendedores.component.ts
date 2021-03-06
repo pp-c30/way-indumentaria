@@ -22,7 +22,11 @@ export class VendedoresComponent implements OnInit {
   domg: string="";
   telg: string="";
 
+  class_button_sa:string = 'btn btn-success';
+  text_button:string = 'Guardar';
 
+  p:number = 1;
+  buscar:any;
 
   constructor(private vendedoresServ:VendedoresService, private fb: FormBuilder, private vendedorLocServ:LocalidadesService ) {
 
@@ -35,7 +39,7 @@ export class VendedoresComponent implements OnInit {
       dni:[''],
       domicilio:[''],
       email:[''],
-      localidad:[0],
+      localidad:[-1],
       adjunto:[''],
       telefono:[''],
       nom_garante:[''],
@@ -44,7 +48,7 @@ export class VendedoresComponent implements OnInit {
       dni_garante:[''],
       domicilio_garante:[''],
       telefono_garante:[''],
-      estado:['']
+      estado:[1]
 
     })
 
@@ -54,6 +58,7 @@ export class VendedoresComponent implements OnInit {
     this.obtenerVendedores();
     this.obtenerLocalidades();
   }
+
 
   obtenerVendedores(){
     this.vendedoresServ.getVendedores().subscribe(
@@ -70,6 +75,8 @@ export class VendedoresComponent implements OnInit {
               console.log(respuesta);
               this.obtenerVendedores();
               this.formVendedor.reset();
+              this.text_button = 'Guardar';
+              this.class_button_sa = 'btn btn-success';
             },
             error => console.log(error)
 
@@ -104,6 +111,8 @@ export class VendedoresComponent implements OnInit {
   }
 
   editarVendedor(vendedor:IVendedor){
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-primary';
      this.formVendedor.setValue({
       id_vendedor:vendedor.id_vendedor,
       nombre:vendedor.nombre,
@@ -158,6 +167,8 @@ export class VendedoresComponent implements OnInit {
 
   resetearformVendedor(){
     this.formVendedor.reset();
+    this.text_button = 'Guardar';
+    this.class_button_sa = 'btn btn-success';
   }
 
 }

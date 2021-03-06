@@ -14,16 +14,22 @@ export class CategoriasComponent implements OnInit {
 
   formCategoria: FormGroup;
 
+  class_button_sa:string = 'btn btn-success btn-sm';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
+
   constructor( private categoriaServ: CategoriasService, private fb: FormBuilder ) { 
 
     this.formCategoria = this.fb.group({
-      id_categoria:[''],
+      id_categoria:[null],
       descripcion:[''],
-      estado:['']
-
-
+      estado:[1]
     })
-
    }
 
   ngOnInit(): void {
@@ -49,6 +55,9 @@ export class CategoriasComponent implements OnInit {
         console.log(respuesta);
         this.obtenerCategoria();
         this.formCategoria.reset();
+        this.text_button = 'Guardar';
+        this.class_button_sa = 'btn btn-success btn-sm';
+        this.class_display = 'display:none';
       },
       error => console.log(error)
   )
@@ -68,14 +77,17 @@ export class CategoriasComponent implements OnInit {
   }
 
   editarCategoria(categoria:ICategoria){
+
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-primary btn-sm';
+    this.class_display = 'display:block';
     this.formCategoria.setValue({
       id_categoria:categoria.id_categoria,
       descripcion:categoria.descripcion,
       estado:categoria.estado,
 
     });
-    
-     }
+  }
 
      eliminarCategoria(id:number){
 
@@ -102,6 +114,10 @@ export class CategoriasComponent implements OnInit {
 
      resetearformCategoria(){
       this.formCategoria.reset();
+      this.formCategoria.get('estado').setValue(1);
+      this.text_button = 'Guardar';
+      this.class_button_sa = 'btn btn-success btn-sm';
+      this.class_display = 'display:none';
     }
 
 

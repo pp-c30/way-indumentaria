@@ -9,25 +9,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CatgastoController = void 0;
 const database_1 = require("../routes/database");
 // CRUD
 class CatgastoController {
     //listar
     listaCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let categoria_gasto = yield db.query('select * from categoria_gasto');
-            return res.json(categoria_gasto);
+            try {
+                const db = yield database_1.conexion();
+                let categoria_gasto = yield db.query('select * from categoria_gasto');
+                res.json(categoria_gasto);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     //guardar
     guardarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let catg = req.body;
-            yield db.query("insert into categoria_gasto set ?", [catg]);
-            return res.json("La categoria se inserto exitosamente");
+            try {
+                const db = yield database_1.conexion();
+                let catg = req.body;
+                yield db.query("insert into categoria_gasto set ?", [catg]);
+                res.json("La categoria se inserto exitosamente");
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     //eliminar
@@ -51,20 +60,30 @@ class CatgastoController {
     //actualizar
     actualizarCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let id = req.params.id;
-            let nuevos_datos_catg = req.body;
-            yield db.query("update categoria_gasto set ? where id_categoria_gasto = ?", [nuevos_datos_catg, id]);
-            return res.json('se actualizo correctamente');
+            try {
+                const db = yield database_1.conexion();
+                let id = req.params.id;
+                let nuevos_datos_catg = req.body;
+                yield db.query("update categoria_gasto set ? where id_categoria_gasto = ?", [nuevos_datos_catg, id]);
+                res.json('se actualizo correctamente');
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     //obtener un solo objeto de la tabla
     obtenerUnaCatgasto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let id = req.params.id;
-            let unaCatg = yield db.query("select * from categoria_gasto where id_categoria_gasto = ? ", [id]);
-            return res.json(unaCatg[0]);
+            try {
+                const db = yield database_1.conexion();
+                let id = req.params.id;
+                let unaCatg = yield db.query("select * from categoria_gasto where id_categoria_gasto = ? ", [id]);
+                res.json(unaCatg[0]);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
 }

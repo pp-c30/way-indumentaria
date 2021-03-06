@@ -6,33 +6,41 @@ export class localidadController{
 
     public async listaLocalidades(req:Request,res:Response){
 
-        const db = await conexion();
+        try {
+            const db = await conexion();
 
-        let localidades = await db.query('select l.id_localidad,l.descripcion, p.descripcion as descripcion_provincia, p.id_provincia as provincia from localidad l, provincia p where l.provincia = p.id_provincia');
-
-        return res.json(localidades);
+            let localidades = await db.query('select l.id_localidad,l.descripcion, p.descripcion as descripcion_provincia, p.id_provincia as provincia from localidad l, provincia p where l.provincia = p.id_provincia');
+    
+            res.json(localidades);
+        } catch (error) {
+            res.json(error);
+        }
+       
     }
 
     public async guardarLocalidad(req:Request,res:Response){
 
-        const db = await conexion();
+        try {
+            const db = await conexion();
 
-        let localidad:ILocalidad = req.body;
+            let localidad:ILocalidad = req.body;
 
-        await db.query('insert into localidad set ?',[localidad]);
+            await db.query('insert into localidad set ?',[localidad]);
 
-        return res.json('La localidad fue guardada exitosamente'); 
+            res.json('La localidad fue guardada exitosamente'); 
+        } catch (error) {
+            res.json(error);
+        }
+        
 
     }
 
     public async eliminarLocalidad(req:Request,res:Response)
     {
-
-        const db = await conexion();
-
-        let codigo = req.params.codigo;
-
         try {
+            const db = await conexion();
+
+            let codigo = req.params.codigo;
             await db.query("delete from localidad where id_localidad = ?",[codigo]);
             return res.json('La localidad se elimino exitosamente');
         }
@@ -45,30 +53,36 @@ export class localidadController{
 
     public async actualizarLocalidad(req:Request,res:Response)
     {
+        try {
+            const db = await conexion();
 
-        const db = await conexion();
+            let codigo = req.params.codigo;
 
-        let codigo = req.params.codigo;
+            let localidad_actualizada = req.body;
 
-        let localidad_actualizada = req.body;
+            await db.query("update localidad set ? where id_localidad = ?",[localidad_actualizada,codigo]);
 
-        await db.query("update localidad set ? where id_localidad = ?",[localidad_actualizada,codigo]);
-
-        return res.json("Se actualizo exitosamente");
+            res.json("Se actualizo exitosamente");
+        } catch (error) {
+            res.json(error);
+        }
+        
 
     }
 
     public async obtenerUnaLocalidad(req:Request,res:Response)
     {
+        try {
+            const db = await conexion();
 
-        const db = await conexion();
+            let codigo = req.params.codigo;
 
-        let codigo = req.params.codigo;
+            let unaLocalidad = await db.query("select * from localidad where id_localidad = ?",[codigo]);
 
-        let unaLocalidad = await db.query("select * from localidad where id_localidad = ?",[codigo]);
-
-        return res.json(unaLocalidad[0]);
-
+            res.json(unaLocalidad[0]);
+        } catch (error) {
+            res.json(error);
+        }
     }
 
 }

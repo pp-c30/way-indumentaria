@@ -17,6 +17,14 @@ export class ProvinciasComponent implements OnInit {
 
   formProvincia: FormGroup;
 
+  class_button_sa:string = 'btn btn-success btn-sm';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
       // crear una instancia de pagosServ
   constructor(private provinciasServ:ProvinciasService, private fb: FormBuilder) {
 
@@ -50,6 +58,9 @@ export class ProvinciasComponent implements OnInit {
           console.log(respuesta);
           this.obtenerProvincias();
           this.formProvincia.reset();
+          this.text_button = 'Guardar';
+          this.class_button_sa = 'btn btn-success btn-sm';
+          this.class_display = 'display:none';
         },
         error => console.log(error)
 
@@ -73,37 +84,38 @@ export class ProvinciasComponent implements OnInit {
   }
 
   editarProvincia(provincia:IProvincia){
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-primary btn-sm';
+    this.class_display = 'display:block';
      this.formProvincia.setValue({
        id_provincia:provincia.id_provincia,
        descripcion:provincia.descripcion,
 
      });
      
-      }
+  }
 
-      eliminarProvincia(id:number){
+  eliminarProvincia(id:number){
 
-        if(confirm('¿Esta seguro que desea eliminar?')){
-    
-          this.provinciasServ.deleteProvincia(id).subscribe(
-            respuesta =>{
-              console.log(respuesta);
-              this.obtenerProvincias();
-      
-            },
-            error => console.log(error)
-            
-          )
-        }
-    
-    
+    if(confirm('¿Esta seguro que desea eliminar?')){
+
+      this.provinciasServ.deleteProvincia(id).subscribe(
+        respuesta =>{
+          console.log(respuesta);
+          this.obtenerProvincias();
+  
+        },
+        error => console.log(error)
         
-      }
+      )
+    }
+  }
 
-
-
-      resetearformProvincia(){
-        this.formProvincia.reset();
-      }
+  resetearformProvincia(){
+    this.formProvincia.reset();
+    this.text_button = 'Guardar';
+    this.class_button_sa = 'btn btn-success btn-sm';
+    this.class_display = 'display:none';
+  }
     
 }

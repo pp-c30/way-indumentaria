@@ -16,6 +16,15 @@ export class CategoriaGastosComponent implements OnInit {
 
   formCategoria_gasto: FormGroup;
 
+  class_button_sa:string = 'btn btn-success btn-sm';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
+
   constructor( private categoria_gastoServ: CategoriaGastosService, private fb: FormBuilder ) { 
 
 
@@ -51,6 +60,9 @@ export class CategoriaGastosComponent implements OnInit {
           console.log(respuesta);
           this.obtenerCategoria_gasto();
           this.formCategoria_gasto.reset();
+          this.text_button = 'Guardar';
+          this.class_button_sa = 'btn btn-success btn-sm';
+          this.class_display = 'display:none';
         },
         error => console.log(error)
     )
@@ -69,13 +81,16 @@ export class CategoriaGastosComponent implements OnInit {
   
     }
 
-    editarCategoria_gasto(categoria_gasto:ICategoria_gasto){
-      this.formCategoria_gasto.setValue({
-        id_categoria_gasto:categoria_gasto.id_categoria_gasto,
-        descripcion:categoria_gasto.descripcion,
- 
-      });
-      
+      editarCategoria_gasto(categoria_gasto:ICategoria_gasto){
+        this.text_button = 'Actualizar';
+        this.class_button_sa = 'btn btn-primary btn-sm';
+        this.class_display = 'display:block';
+        this.formCategoria_gasto.setValue({
+          id_categoria_gasto:categoria_gasto.id_categoria_gasto,
+          descripcion:categoria_gasto.descripcion,
+  
+        });
+        
        }
 
        eliminarCategoria_gasto(id:number){
@@ -103,6 +118,9 @@ export class CategoriaGastosComponent implements OnInit {
 
        resetearformCategoria_gasto(){
         this.formCategoria_gasto.reset();
+        this.text_button = 'Guardar';
+        this.class_button_sa = 'btn btn-success btn-sm';
+        this.class_display = 'display:none';
       }
 
 

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { VentasImpagasPagasService } from "../../services/ventas-impagas-pagas.service";
 import { FormBuilder , FormGroup } from "@angular/forms";
 import { IVentaImpagaPaga } from "src/app/models/venta_impaga_paga";
-
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-ventas-impagas-pagas',
@@ -15,7 +15,16 @@ export class VentasImpagasPagasComponent implements OnInit {
 
   formVentaImpagaPaga: FormGroup;
 
-  constructor( private ventaImpagaPagaServ: VentasImpagasPagasService, private fb: FormBuilder ) { 
+  id_vpi:number=0;
+
+  id_vendedor_params:number;
+
+  nombre_ape_params:string;
+
+  p:number = 1;
+  buscar:any;
+
+  constructor(private activatedRouter:ActivatedRoute,private router:Router, private ventaImpagaPagaServ: VentasImpagasPagasService, private fb: FormBuilder ) { 
     this.formVentaImpagaPaga = this.fb.group({
       id_impaga_paga:[''],
       fecha_carga:[''],
@@ -23,20 +32,37 @@ export class VentasImpagasPagasComponent implements OnInit {
       total:[''],
       debe:[''],
       estado:['']
-
-
-    })
-
-
-
+    });
    }
 
   ngOnInit(): void {
-    this.obtenerVentaImpagaPaga();
+    this.activatedRouter.params.subscribe(
+      params => {
+        this.id_vendedor_params = params.id_vendedor
+        this.nombre_ape_params = params.nombre_ape;
+      }
+    );
+    this.obtenerVentaImpagaPaga(this.id_vendedor_params);
   }
 
-  obtenerVentaImpagaPaga(){
-    this.ventaImpagaPagaServ.getVentaImpagaPaga().subscribe(
+  actualizar(datoDelPopup: string) {
+    this.obtenerVentaImpagaPaga(this.id_vendedor_params);
+ }
+
+
+
+  verDetalle(idip:number)
+  {
+    this.id_vpi = idip;
+  }
+
+  verDetalle2(id_vpi:number)
+  {
+    this.router.navigate(['ventas-detalle',id_vpi]);
+  }
+
+  obtenerVentaImpagaPaga(id_vendedor:number){
+    this.ventaImpagaPagaServ.getVentaImpagaPaga(id_vendedor).subscribe(
 
         resultado => this.listVentaImpagaPaga = resultado,
         error => console.log(error)
@@ -52,7 +78,7 @@ export class VentasImpagasPagasComponent implements OnInit {
      this.ventaImpagaPagaServ.updateVentaImpagaPaga(this.formVentaImpagaPaga.value).subscribe(
       respuesta => {
         console.log(respuesta);
-        this.obtenerVentaImpagaPaga();
+        this.obtenerVentaImpagaPaga(this.id_vendedor_params);
         this.formVentaImpagaPaga.reset();
       },
       error => console.log(error)
@@ -62,7 +88,7 @@ export class VentasImpagasPagasComponent implements OnInit {
     this.ventaImpagaPagaServ.saveVentaImpagaPaga(this.formVentaImpagaPaga.value).subscribe(
       resultado => {
         console.log(resultado);
-        this.obtenerVentaImpagaPaga();//se refresca la grilla
+        this.obtenerVentaImpagaPaga(this.id_vendedor_params);//se refresca la grilla
         this.formVentaImpagaPaga.reset();
       },
       error => console.log(error)
@@ -93,7 +119,7 @@ editarVentaImpagaPaga(venta_impaga_paga:IVentaImpagaPaga){
       this.ventaImpagaPagaServ.deleteVentaImpagaPaga(id).subscribe(
         respuesta =>{
           console.log(respuesta);
-          this.obtenerVentaImpagaPaga();
+          this.obtenerVentaImpagaPaga(this.id_vendedor_params);
   
         },
         error => console.log(error)

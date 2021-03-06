@@ -7,26 +7,31 @@ import { ICatgasto } from "../models/catgasto";
 export class CatgastoController {
     //listar
     public  async listaCatgasto(req:Request, res:Response){
-        
-        const db = await conexion();
-        let categoria_gasto = await db.query('select * from categoria_gasto');
+        try {
+            const db = await conexion();
+            let categoria_gasto = await db.query('select * from categoria_gasto');
 
-
-        return res.json(categoria_gasto);
-        
+            res.json(categoria_gasto);     
+        } catch (error) {
+            res.json(error);
+        }
         
     }
     //guardar
     public async guardarCatgasto(req:Request, res:Response){
 
-        const db = await conexion();
+        try {
+            const db = await conexion();
         
+            let catg:ICatgasto = req.body;
 
-        let catg:ICatgasto = req.body;
+            await db.query("insert into categoria_gasto set ?", [catg]);
 
-        await db.query("insert into categoria_gasto set ?", [catg]);
-
-        return res.json("La categoria se inserto exitosamente");
+            res.json("La categoria se inserto exitosamente");
+        } catch (error) {
+            res.json(error);
+        }
+        
     }
     //eliminar
     public async eliminarCatgasto(req:Request, res:Response){
@@ -51,21 +56,31 @@ export class CatgastoController {
     }
     //actualizar
     public async actualizarCatgasto(req:Request, res:Response)
-    {
-        const db = await conexion();
-        let id = req.params.id;
-        let nuevos_datos_catg = req.body;
-
-        await db.query("update categoria_gasto set ? where id_categoria_gasto = ?",[nuevos_datos_catg,id]);
-
-        return res.json('se actualizo correctamente');
+    {   
+        try {
+            const db = await conexion();
+            let id = req.params.id;
+            let nuevos_datos_catg = req.body;
+    
+            await db.query("update categoria_gasto set ? where id_categoria_gasto = ?",[nuevos_datos_catg,id]);
+    
+            res.json('se actualizo correctamente');
+        } catch (error) {
+            res.json(error);
+        }
+       
     }
     //obtener un solo objeto de la tabla
     public async obtenerUnaCatgasto(req:Request, res:Response){
-        const db = await conexion();
-        let id = req.params.id;
-
-       let unaCatg = await db.query("select * from categoria_gasto where id_categoria_gasto = ? ",[id]);
-       return res.json(unaCatg[0]);
+        try {
+            const db = await conexion();
+            let id = req.params.id;
+    
+            let unaCatg = await db.query("select * from categoria_gasto where id_categoria_gasto = ? ",[id]);
+            res.json(unaCatg[0]); 
+        } catch (error) {
+            res.json(error);
+        }
+        
     }
 }

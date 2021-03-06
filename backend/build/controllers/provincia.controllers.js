@@ -9,14 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.provinciaController = void 0;
 const database_1 = require("../routes/database");
 class provinciaController {
     listaProvincias(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let provincias = yield db.query('select * from provincia');
-            return res.json(provincias);
+            try {
+                const db = yield database_1.conexion();
+                let provincias = yield db.query('select * from provincia');
+                res.json(provincias);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     guardarProvincias(req, res) {
@@ -29,9 +33,9 @@ class provinciaController {
     }
     eliminarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const conex = yield database_1.conexion();
-            let id_provincia = req.params.codigo;
             try {
+                const conex = yield database_1.conexion();
+                let id_provincia = req.params.codigo;
                 yield conex.query('delete from provincia where id_provincia = ?', [id_provincia]);
                 return res.json("Provincia eliminada");
             }
@@ -42,19 +46,29 @@ class provinciaController {
     }
     actualizarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let provincia_actualizada = req.body;
-            yield db.query("update provincia set ? where id_provincia = ?", [provincia_actualizada, codigo]);
-            return res.json("Se actualizo exitosamente");
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let provincia_actualizada = req.body;
+                yield db.query("update provincia set ? where id_provincia = ?", [provincia_actualizada, codigo]);
+                res.json("Se actualizo exitosamente");
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     obtenerUnaProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let unaProvincia = yield db.query("select * from provincia where id_provincia = ?", [codigo]);
-            return res.json(unaProvincia[0]);
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let unaProvincia = yield db.query("select * from provincia where id_provincia = ?", [codigo]);
+                res.json(unaProvincia[0]);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
 }

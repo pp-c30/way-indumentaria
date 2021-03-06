@@ -21,6 +21,16 @@ export class ProductosComponent implements OnInit {
 
   formProducto: FormGroup;
 
+  class_button_sa:string = 'btn btn-outline-success';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
+
+
   constructor(private productosServ:ProductosService, private fb: FormBuilder, private categoriasServ:CategoriasService) {
 
     this.formProducto = this.fb.group({
@@ -32,11 +42,11 @@ export class ProductosComponent implements OnInit {
       precio_way:[''],
       precio_final:[''],
       categoria:[0],
-      estado:[''],
+      estado:[-1],
       descuento:[''],
-      categoria_sexo:[''],
-      fecha_carga:['']
-      
+      categoria_sexo:[1],
+      fecha_carga:[new Date()],
+      stock:[1]
 
     })
 
@@ -64,6 +74,9 @@ export class ProductosComponent implements OnInit {
           console.log(respuesta);
           this.obtenerProductos();
           this.formProducto.reset();
+          this.text_button = 'Guardar';
+          this.class_button_sa = 'btn btn-outline-success';
+          this.class_display = 'display:none';
         },
         error => console.log(error)
       )
@@ -85,6 +98,9 @@ export class ProductosComponent implements OnInit {
 
   editarProducto(producto:IProducto)
   {
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-outline-primary';
+    this.class_display = 'display:block';
     this.formProducto.setValue({
       id_producto:producto.id_producto,
       codigo:producto.codigo,
@@ -97,6 +113,7 @@ export class ProductosComponent implements OnInit {
       descuento:producto.descuento,
       categoria_sexo:producto.categoria_sexo,
       fecha_carga:{year:Number(producto.year),month:Number(producto.month),day:Number(producto.day)},
+      stock:producto.stock
     });
   }
 
@@ -123,6 +140,9 @@ export class ProductosComponent implements OnInit {
   resetearformProducto()
   {
     this.formProducto.reset();
+    this.text_button = 'Guardar';
+    this.class_button_sa = 'btn btn-outline-success';
+    this.class_display = 'display:none';
   }
 
 }

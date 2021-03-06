@@ -20,6 +20,15 @@ export class GastosComponent implements OnInit {
 
   formGasto: FormGroup;
 
+  class_button_sa:string = 'btn btn-success btn-sm';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
+
   constructor(private gastosServ:GastosService, private fb: FormBuilder, private gastosCatServ:CategoriaGastosService) {
     
     this.formGasto = this.fb.group({
@@ -53,6 +62,9 @@ export class GastosComponent implements OnInit {
           console.log(respuesta);
           this.obtenerGastos();
           this.formGasto.reset();
+          this.text_button = 'Guardar';
+          this.class_button_sa = 'btn btn-success btn-sm';
+          this.class_display = 'display:none';
         },
         error => console.log(error)
       )
@@ -81,6 +93,9 @@ export class GastosComponent implements OnInit {
   }
 
   editarGasto(gasto:IGasto){
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-primary btn-sm';
+    this.class_display = 'display:block';
     this.formGasto.setValue({
       id_gasto:gasto.id_gasto,
       descripcion:gasto.descripcion,
@@ -103,6 +118,11 @@ export class GastosComponent implements OnInit {
   }
 
   resetearformGasto(){
+    this.text_button = 'Guardar';
+    this.class_button_sa = 'btn btn-success btn-sm';
+    this.class_display = 'display:none';
+    
     this.formGasto.reset();
+    this.formGasto.get('categoria').setValue(0);
   }
 }

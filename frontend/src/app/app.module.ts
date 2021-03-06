@@ -21,7 +21,16 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { NgxPaginationModule } from "ngx-pagination";
 
+import { VentaDetalleComponent } from './components/venta-detalle/venta-detalle.component';
+
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import pdfFonts from "pdfmake/build/vfs_fonts"; // fonts provided for pdfmake
+
+// Set the fonts to use
+PdfMakeWrapper.setFonts(pdfFonts);
 
 @NgModule({
   declarations: [
@@ -37,7 +46,8 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     VentasImpagasPagasComponent,
     CategoriasComponent,
     RegistroComponent,
-    IngresoComponent
+    IngresoComponent,
+    VentaDetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +55,9 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthGuard,

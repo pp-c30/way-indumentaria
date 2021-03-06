@@ -44,7 +44,7 @@ export class IngresoComponent implements OnInit {
             }else{
                localStorage.setItem('token',String(respuesta));
                this.formIngreso.reset();
-               this.route.navigate(['/vendedores']);
+               this.route.navigate(['/ventas']);
               
             }
           }

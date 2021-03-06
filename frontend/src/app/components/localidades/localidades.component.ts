@@ -21,6 +21,15 @@ export class LocalidadesComponent implements OnInit {
 
   formLocalidad: FormGroup;
 
+  class_button_sa:string = 'btn btn-success btn-sm';
+
+  class_display:string = 'display:none';
+
+  text_button:string = 'Guardar';
+
+  p:number = 1;
+  buscar:any;
+
   constructor(private localidadesServ:LocalidadesService, private fb: FormBuilder, private localidadesProvServ:ProvinciasService) { 
 
     this.formLocalidad = this.fb.group({
@@ -52,6 +61,9 @@ export class LocalidadesComponent implements OnInit {
           console.log(respuesta);
           this.obtenerLocalidades();
           this.formLocalidad.reset();
+          this.text_button = 'Guardar';
+          this.class_button_sa = 'btn btn-success btn-sm';
+          this.class_display = 'display:none';
         },
         error => console.log(error)
       )
@@ -72,6 +84,9 @@ export class LocalidadesComponent implements OnInit {
 
   editarLocalidad(localidad:ILocalidad)
   {
+    this.text_button = 'Actualizar';
+    this.class_button_sa = 'btn btn-primary btn-sm';
+    this.class_display = 'display:block';
     this.formLocalidad.setValue({
       id_localidad:localidad.id_localidad,
       descripcion:localidad.descripcion,
@@ -101,6 +116,10 @@ export class LocalidadesComponent implements OnInit {
   resetearformLocalidad()
   {
     this.formLocalidad.reset();
+    this.formLocalidad.get('provincia').setValue(0);
+    this.text_button = 'Guardar';
+    this.class_button_sa = 'btn btn-success btn-sm';
+    this.class_display = 'display:none';
   }
 
 }

@@ -9,29 +9,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.categoriaController = void 0;
 const database_1 = require("../routes/database");
 class categoriaController {
     listaCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let categoria = yield db.query('select * from categoria');
-            return res.json(categoria);
+            try {
+                const db = yield database_1.conexion();
+                let categoria = yield db.query('select * from categoria');
+                return res.json(categoria);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     guardarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let categoria = req.body;
-            yield db.query('insert into categoria set ?', [categoria]);
-            return res.json('La categoria fue guardada exitosamente');
+            try {
+                const db = yield database_1.conexion();
+                let categoria = req.body;
+                req.body.estado = Number(req.body.estado);
+                yield db.query('insert into categoria set ?', [categoria]);
+                res.json('La categoria fue guardada exitosamente');
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     eliminarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
             try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
                 yield db.query("delete from categoria where id_categoria = ?", [codigo]);
                 return res.json('La categoria se elimino exitosamente');
             }
@@ -42,19 +52,29 @@ class categoriaController {
     }
     actualizarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let categoria_actualizado = req.body;
-            yield db.query("update categoria set ? where id_categoria = ?", [categoria_actualizado, codigo]);
-            return res.json("Se actualizo exitosamente");
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let categoria_actualizado = req.body;
+                yield db.query("update categoria set ? where id_categoria = ?", [categoria_actualizado, codigo]);
+                res.json("Se actualizo exitosamente");
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     obtenerUnaCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let unaCategoria = yield db.query("select * from categoria where id_categoria = ?", [codigo]);
-            return res.json(unaCategoria[0]);
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let unaCategoria = yield db.query("select * from categoria where id_categoria = ?", [codigo]);
+                res.json(unaCategoria[0]);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
 }

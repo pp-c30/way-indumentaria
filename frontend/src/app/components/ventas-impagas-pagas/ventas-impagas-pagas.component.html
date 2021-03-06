@@ -1,55 +1,106 @@
+
+<ol class="breadcrumb" style="background-color:#fbfbfb">
+    <li class="breadcrumb-item"><a routerLink="/ventas">Inicio</a></li>
+    <li class="breadcrumb-item"><a routerLink="#"><b>Planilla de seguimiento de ventas</b></a></li>
+</ol>
+
 <div class="row">
 
-    <div class="col-sm-8">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                VEND. <b>{{nombre_ape_params}}</b>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input placeholder="Ingrese búsqueda" [(ngModel)]="buscar" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Planilla</th>
+                            <th>Vendedor</th>
+                            <th>Debe</th>
+                            <th>Pago</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Operaciones</th>
+        
+                        </tr>
+                    </thead> 
+        
+                    <tbody>
+                        <tr *ngFor = "let venta_impaga_paga of listVentaImpagaPaga | filter:buscar | paginate:{itemsPerPage:15,currentPage:p}">
+                            <td>{{venta_impaga_paga.id_impaga_paga}}</td>
+                            <td><span class="badge badge-info">Planilla {{venta_impaga_paga.fecha_carga}}</span></td>
+                            <td>{{venta_impaga_paga.vendedor_descripcion}}</td>
 
-        <table class="table table-striped">
+                            <!--<td><b class="text-danger">${{venta_impaga_paga.debe}}</b></td>-->
+                            <td>
+                                <div *ngIf="venta_impaga_paga.debe ; else ipi">
+                                    
+                                    <b class="text-danger">${{venta_impaga_paga.debe}}</b>
+                                  </div>
+                                  
+                                  <ng-template #ipi>
+                                    <b class="text-danger">$0.00</b>
+                                  </ng-template>
+                            </td>
 
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Fecha carga</th>
-                    <th>Vendedor</th>
-                    <th>Total</th>
-                    <th>Debe</th>
-                    <th>Estado</th>
-                    <th>Operaciones</th>
+                            <!--<td><b class="text-success">${{venta_impaga_paga.pago}}</b></td>-->
+                            <td>
+                                <div *ngIf="venta_impaga_paga.pago; else ipp">
+                                    
+                                    <b class="text-success">${{venta_impaga_paga.pago}}</b>
+                                  </div>
+                                  
+                                  <ng-template #ipp>
+                                    <b class="text-success">$0.00</b>
+                                  </ng-template>
+                            </td>
 
-                </tr>
-            </thead> 
 
-            <tbody>
-                <tr *ngFor = "let venta_impaga_paga of listVentaImpagaPaga">
-                    <td>{{venta_impaga_paga.id_impaga_paga}}</td>
-                    <td>{{venta_impaga_paga.fecha_carga}}</td>
-                    <td>{{venta_impaga_paga.vendedor_descripcion}}</td>
-                    <td>{{venta_impaga_paga.total}}</td>
-                    <td>{{venta_impaga_paga.debe}}</td>
-                    <td>
-                        <div *ngIf="venta_impaga_paga.estado == 0; else loggedOut">
-                            <span class="badge badge-danger">Inactivo</span>
-                          </div>
-                          
-                          <ng-template #loggedOut>
-                            <span class="badge badge-success">Activo</span>
-                          </ng-template>
-                    </td>
-                    
-                    <td>
-                        <div class="btn-group btn-group-sm" >
-                             <button class="btn btn-danger" (click)="eliminarVentaImpagaPaga(venta_impaga_paga.id_impaga_paga)"  ><i class="fas fa-trash"></i></button> <!--eliminar -->
-                            <button  class="btn btn-primary" (click)="editarVentaImpagaPaga(venta_impaga_paga)"> <i class="fas fa-edit"></i> </button> <!--modificar -->
-                           
-                       </div>
-                    </td>
-
-                </tr>
-            </tbody>
-
-        </table>
-
+                            <td><b class="text-primary">${{venta_impaga_paga.total}}</b></td>
+                            <td>
+                                <div *ngIf="venta_impaga_paga.estado == 0; else loggedOut">
+                                    <span class="badge badge-danger">Pagos pendientes</span>
+                                  </div>
+                                  
+                                  <ng-template #loggedOut>
+                                    <span class="badge badge-success">Pagos finalizados</span>
+                                  </ng-template>
+                            </td>
+                            
+                            <td>
+                                <div class="btn-group btn-group-sm" >
+                                    <!--
+                                        <button class="btn btn-danger" (click)="eliminarVentaImpagaPaga(venta_impaga_paga.id_impaga_paga)"  ><i class="fas fa-trash"></i></button>
+                                    <button  class="btn btn-primary" (click)="editarVentaImpagaPaga(venta_impaga_paga)"> <i class="fas fa-edit"></i> </button>--> 
+                                    <button data-toggle="modal" data-target="#exampleModal_vip" (click)="verDetalle(venta_impaga_paga.id_impaga_paga)" class="btn btn-outline-primary"><i class="fas fa-eye"></i> Ver detalle</button>
+                                    <!--<button class="btn btn-info" (click)="verDetalle2(venta_impaga_paga.id_impaga_paga)"></button>-->
+                                   
+                               </div>
+                            </td>
+        
+                        </tr>
+                    </tbody>
+        
+                </table>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-sm-4">
+    <!--<div class="col-sm-4">
         
         <div class="card">
             <div class="card-header">Formulario de ventas impagas y pagas</div>
@@ -71,9 +122,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group"> -->
-                        <!-- <input formControlName="fecha_carga" placeholder="Ingrese la fecha de carga" type="text" class="form-control"> -->
-                    <!-- </div> -->
                     <div class="form-group">
                         <input formControlName="vendedor" placeholder="Ingrese el vendedor" type="text" class="form-control">
                     </div>
@@ -104,6 +152,24 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
 
 </div>
+
+
+
+<div class="modal fade" id="exampleModal_vip" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seguimiento de ventas</h5>
+        </div>
+        <div class="modal-body">
+            <app-venta-detalle (textoEmitido)="actualizar($event)" [id_vpi]="id_vpi" [vendedor]="id_vendedor_params"></app-venta-detalle>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="obtenerVentaImpagaPaga(id_vendedor_params)">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

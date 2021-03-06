@@ -9,29 +9,38 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.localidadController = void 0;
 const database_1 = require("../routes/database");
 class localidadController {
     listaLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let localidades = yield db.query('select l.id_localidad,l.descripcion, p.descripcion as descripcion_provincia, p.id_provincia as provincia from localidad l, provincia p where l.provincia = p.id_provincia');
-            return res.json(localidades);
+            try {
+                const db = yield database_1.conexion();
+                let localidades = yield db.query('select l.id_localidad,l.descripcion, p.descripcion as descripcion_provincia, p.id_provincia as provincia from localidad l, provincia p where l.provincia = p.id_provincia');
+                res.json(localidades);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     guardarLocalidad(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let localidad = req.body;
-            yield db.query('insert into localidad set ?', [localidad]);
-            return res.json('La localidad fue guardada exitosamente');
+            try {
+                const db = yield database_1.conexion();
+                let localidad = req.body;
+                yield db.query('insert into localidad set ?', [localidad]);
+                res.json('La localidad fue guardada exitosamente');
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     eliminarLocalidad(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
             try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
                 yield db.query("delete from localidad where id_localidad = ?", [codigo]);
                 return res.json('La localidad se elimino exitosamente');
             }
@@ -42,19 +51,29 @@ class localidadController {
     }
     actualizarLocalidad(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let localidad_actualizada = req.body;
-            yield db.query("update localidad set ? where id_localidad = ?", [localidad_actualizada, codigo]);
-            return res.json("Se actualizo exitosamente");
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let localidad_actualizada = req.body;
+                yield db.query("update localidad set ? where id_localidad = ?", [localidad_actualizada, codigo]);
+                res.json("Se actualizo exitosamente");
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
     obtenerUnaLocalidad(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let codigo = req.params.codigo;
-            let unaLocalidad = yield db.query("select * from localidad where id_localidad = ?", [codigo]);
-            return res.json(unaLocalidad[0]);
+            try {
+                const db = yield database_1.conexion();
+                let codigo = req.params.codigo;
+                let unaLocalidad = yield db.query("select * from localidad where id_localidad = ?", [codigo]);
+                res.json(unaLocalidad[0]);
+            }
+            catch (error) {
+                res.json(error);
+            }
         });
     }
 }

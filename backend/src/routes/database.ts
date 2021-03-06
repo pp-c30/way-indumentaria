@@ -9,7 +9,7 @@ export async function conexion()
         host:'localhost',
         user:'root',
         password:'',
-        database:'way'
+        database:'way_indumentaria'
     });
 
     //Entrega una respuesta

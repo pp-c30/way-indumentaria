@@ -16,4 +16,5 @@ export interface IProducto
     year?:number;
     month?:number;
     day?:number;
+    stock:number;
 }
